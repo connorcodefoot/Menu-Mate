@@ -1,16 +1,15 @@
 import React from "react";
 
 import "components/Application.scss";
+import AdminPortal from "pages/AdminPortal";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function Application(props) {
   return (
-    <main className="layout">
-      <section className="sidebar">
-        {/* Replace this with the sidebar elements during the "Project Setup & Familiarity" activity. */}
-      </section>
-      <section className="schedule">
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
-      </section>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/admin" element={<AdminPortal />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
