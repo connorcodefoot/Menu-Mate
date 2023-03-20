@@ -11,7 +11,7 @@ function UserInput() {
       <h1 class="restaurant"> *RESTAURANT* </h1>
       <section>
         <div class="input-field">
-          <form action="/admin">
+          <form action="/menu">
             <div>
               <input type="text" class="form-control" name="name" placeholder="Name" required="required"/>
             </div>
