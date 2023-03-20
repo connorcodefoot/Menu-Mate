@@ -1,0 +1,13 @@
+.admin-orders {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.admin-order {
+  margin: 1rem;
+  padding: 2rem;
+  width: 30%;
+  box-sizing: border-box;
+  background-color: lightgrey;
+  border-radius: 20px;
+}
