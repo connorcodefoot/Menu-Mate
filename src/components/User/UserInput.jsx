@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import 'components/User/UserInput.scss';
 
 
@@ -19,6 +19,16 @@ function UserInput() {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    // Add the home-background class to the body element (this is being used for background color on home page without affecting other pages)
+    document.body.classList.add("home-background");
+
+    // Remove the home-background class when component unmounts
+    return () => {
+      document.body.classList.remove("home-background");
+    };
+  }, []);
 
   return (
     <>
