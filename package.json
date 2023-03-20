@@ -14,7 +14,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "db:reset": "node bin/resetdb.js"
   },
   "browserslist": {
     "production": [
@@ -31,6 +32,9 @@
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "babel-loader": "8.1.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.17.1",
+    "pg": "^8.5.0",
     "sass": "^1.53.0"
   },
   "jest": {
