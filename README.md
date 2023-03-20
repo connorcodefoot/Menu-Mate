@@ -2,16 +2,21 @@
 
 ## Setup DB
 
-1. psql
-2. ```CREATE ROLE mate WITH LOGIN password '123456';
+psql
+
+```CREATE ROLE mate WITH LOGIN password '123456';
 CREATE DATABASE mmdatabase OWNER mate;```
-3. Ensure .env file looks like this ```DB_HOST=localhost
+
+Ensure .env file looks like this:
+```DB_HOST=localhost
 DB_USER=mate
 DB_PASS=123456
 DB_NAME=mmdatabase
 DB_PORT=5432```
-4. run ```npm install```
-5. run ```npm run db:reset```  
+
+run ```npm install```
+
+run ```npm run db:reset```  
 
 
 ## Setup
