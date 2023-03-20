@@ -1,7 +1,7 @@
 import React from "react";
 import 'components/Admin/AdminNav.scss'
 
-function Navbar() {
+export default function Navbar() {
   return (
     <nav class='admin-nav'>
       <div>User</div>
@@ -10,12 +10,12 @@ function Navbar() {
       <div>      
         <ul>
         <button class="admin-nav-button"> Menus </button>
-        <button class="admin-nav-button"> Orders </button>
+        <form action="/admin/orders">
+        <button type="submit" class="admin-nav-button"> Orders </button>
+        </form>
         </ul>
       </div>
 
     </nav>
   );
 }
-
-export default Navbar;
