@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+
+main {
+  background-color: #f59068;
+}
+
+.welcome {
+  font-family: 'Kalam', cursive;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 10px;
+}
+
+.restaurant {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+
+section {
+  width: 60%;
+  border: solid;
+  border-color: whitesmoke;
+  border-width: 10px;
+  border-radius: 10px;
+  padding: 3em 1em 3em 1em;
+  text-align: center;
+  margin: auto;
+  margin-top: 8em;
+}
+
+.input-field {
+  background-color: whitesmoke;
+  padding: 4em 1em 2em 1em;
+  border-radius: 10px;
+}
+
+input {
+  border-radius: 20px;
+  border: 10px solid white;
+  background-color: whitesmoke;
+  margin-bottom: 2em;
+}
+
+form input {
+  font-size: 1em;
+  padding: 10px;
+}
