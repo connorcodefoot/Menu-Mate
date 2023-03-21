@@ -8,6 +8,23 @@
   padding: 2rem;
   width: 30%;
   box-sizing: border-box;
-  background-color: lightgrey;
+  background-color: rgb(246, 246, 246);
   border-radius: 20px;
+}
+
+.order-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-items {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem;
+}
+
+.admin-order-options {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
