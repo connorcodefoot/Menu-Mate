@@ -1,52 +1,45 @@
 import React from "react";
 import AdminOrderView from "./AdminOrderView";
-import 'components/Admin/AdminOrders.scss'
+import 'components/Admin/AdminOrders.scss';
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function AdminOrders() {
 
-  const orders = [
-    {
-      id: 1,
-      table_number: 1,
-      customer_name: 'Joey',
-      order_total_cents: 5000,
-    },
-    {
-      id: 2,
-      table_number: 3,
-      customer_name: 'Chandler',
-      order_total_cents: 7000,
-    },
-    {
-      id: 3,
-      table_nubmer: 3,
-      customer_name: 'Ross',
-      order_total_cents: 10000,
-    },
-    {
-      id: 4,
-      table_number: 1,
-      customer_name: 'Monica',
-      order_total_cents: 10000,
-    }
-  ]
+  const [isLoading, setLoading] = useState(true);
+  const [orders, setOrders] = useState()
+
+  useEffect(() => {
+    axios.get('/api/admin/orders')
+      .then((res) => {
+        setOrders(res.data.orders)
+        setLoading(false)
+      });
+  }, []);
+
+  if (isLoading) {
+    return <div> LOADING </div>
+  }
 
   const displayOrders = orders.map((order) => {
-
-    return(
+    return (
       <AdminOrderView
-      key={order.id}
-      table={order.table_number}
-      customer={order.customer_name}
-      price={order.order_total_cents}
-       />
-    )
-    })
+        key={order.id}
+        id={order.id}
+        table={order.table_number}
+        customer={order.customer_name}
+        price={order.order_total_cents}
+      />
+    );
+  });
 
   return (
-  <div class="admin-orders">
-    {displayOrders}
-  </div>
+    <div class="admin-orders">
+      {displayOrders}
+    </div>
   )
-
 }
+
+
+
