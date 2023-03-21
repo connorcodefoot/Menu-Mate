@@ -1,37 +1,22 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import 'components/User/Cart.scss';
-
-
-const items = [
-
-  {
-    id: 2,
-    title: 'Salad',
-    details: 'Nutricious not delicious',
-    price_cents: 1300,
-    active: true
-  },
-  {
-    id: 3,
-    title: 'Soup',
-    details: 'Soup De Jour all jour',
-    price_cents: 1100,
-    active: true
-  },
-  {
-    id: 4,
-    title: 'Burrito',
-    details: 'It is good and this is a long description to test the db and the styling cause resataurants may input this amount of detail for the order. It could be longer and longer and up until now even longer.',
-    price_cents: 2100,
-    active: true
-  },
-
-];
 
 function Cart() {
   const [selectedOptions, setSelectedOptions] = useState({});
+
+  const [items, setItems] = useState([]);
+
+useEffect(() => {
+  axios.get('/api/user/cart')
+    .then((res) => {
+      setItems(res.data.items);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}, []);
+
 
   function handleOptionChange(itemId, optionValue) {
     setSelectedOptions(prevState => ({
@@ -116,40 +101,5 @@ function Cart() {
     </>
   );
 }
-
-
-
-
-// function Cart() {
-
-// const [items, setItems] = useState([]);
-
-// useEffect(() => {
-//   axios.get('/api/user/cart')
-//     .then((res) => {
-//       setItems(res.data.items);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// }, []);
-
-
-// return (
-//   <div className="cart">
-//     <h1>Your Cart</h1>
-//     <ul>
-//       {items.map((item) => (
-//         <li key={item.id}>
-//           <h2>{item.title}</h2>
-//           <p>{item.details}</p>
-//           <p>{item.price_cents / 100}</p>
-//           <button>Remove Item</button>
-//         </li>
-//       ))}
-//     </ul>
-//   </div>
-// );
-// }
 
 export default Cart;
