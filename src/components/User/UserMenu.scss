@@ -1,0 +1,17 @@
+.user-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-menu-item {
+  flex: 1;
+  margin: 1rem;
+  padding: 2rem;
+  background-color: rgb(246, 246, 246);
+  border-radius: 20px;
+}
+
+.item-info {
+  display: flex;
+  justify-content: space-between;
+}
