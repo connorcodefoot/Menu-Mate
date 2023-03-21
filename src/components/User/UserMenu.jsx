@@ -5,8 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import 'components/User/UserMenu.scss'
 
-
-export default function userMenu() {
+export default function UserMenu() {
 
   const [isLoading, setLoading] = useState(true);
   const [items, setItems] = useState()
