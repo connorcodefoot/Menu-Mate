@@ -14,6 +14,7 @@ export default function Application(props) {
       <Routes>
         <Route path="/admin" element={<AdminPortal />}></Route>
         <Route path="/" element={<UserHome />}></Route>
+        <Route path="/users/menu" element={<UserMenu />}></Route>
         <Route path="/menu" element={<MenuItem />}></Route>
         <Route path="admin/orders" element={<AdminOrders />}></Route>
       </Routes>
