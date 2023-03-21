@@ -6,14 +6,14 @@ export default function Navbar() {
     <nav class='admin-nav'>
       <div>User</div>
 
-      <div> <h1> Menu Mate</h1></div>
-      <div>      
-        <ul>
+      <div><h1> Menu Mate</h1></div>
+      <div class="admin-nav-buttons">
+        <form action="/admin/orders">      
         <button class="admin-nav-button"> Menus </button>
+        </form>
         <form action="/admin/orders">
         <button type="submit" class="admin-nav-button"> Orders </button>
         </form>
-        </ul>
       </div>
 
     </nav>
