@@ -1,1 +1,0 @@
-INSERT INTO menus (title) VALUES ('Test Menu');
