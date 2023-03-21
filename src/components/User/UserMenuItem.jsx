@@ -7,9 +7,12 @@ export default function UserMenuItem(props) {
   <div class="user-menu-item">
     <div class="item-info">
       <h1>{props.title}</h1>
-      <h3>{props.price / 100}</h3>
+      {props.details} 
     </div>
-    {props.details}
+    <div class="item-option">
+    <h3>{props.price / 100}</h3>
+    <button class="add-item">+</button>
+    </div>
   </div>
   </>
   )
