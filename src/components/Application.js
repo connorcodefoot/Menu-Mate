@@ -7,6 +7,7 @@ import AdminPortal from "pages/AdminPortal";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserHome from "pages/UserHome";
 import MenuItem from "./MenuItem";
+import UserCart from "pages/UserCart";
 
 export default function Application(props) {
   return (
@@ -16,6 +17,7 @@ export default function Application(props) {
         <Route path="/" element={<UserHome />}></Route>
         <Route path="/menu" element={<MenuItem />}></Route>
         <Route path="admin/orders" element={<AdminOrders />}></Route>
+        <Route path="user/cart" element={<UserCart />}></Route>
       </Routes>
     </BrowserRouter>
   );
