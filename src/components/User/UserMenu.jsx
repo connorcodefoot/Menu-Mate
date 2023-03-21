@@ -6,7 +6,7 @@ import { useState } from "react";
 import 'components/User/UserMenu.scss'
 
 
-export default function AdminOrders() {
+export default function userMenu() {
 
   const [isLoading, setLoading] = useState(true);
   const [items, setItems] = useState()
