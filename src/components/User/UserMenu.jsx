@@ -3,6 +3,8 @@ import UserMenuItem from "./UserMenuItem";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import 'components/User/UserMenu.scss'
+
 
 export default function AdminOrders() {
 
@@ -12,6 +14,7 @@ export default function AdminOrders() {
   useEffect(() => {
     axios.get('/api/user/menus')
       .then((res) => {
+        console.log(res)
         setItems(res.data.items)
         setLoading(false)
       });
@@ -34,7 +37,7 @@ export default function AdminOrders() {
   });
 
   return (
-    <div class="admin-orders">
+    <div class="user-menu">
       {displayItems}
     </div>
   )
