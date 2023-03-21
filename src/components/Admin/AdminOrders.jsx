@@ -13,6 +13,7 @@ export default function AdminOrders() {
   useEffect(() => {
     axios.get('/api/admin/orders')
       .then((res) => {
+        console.log(res)
         setOrders(res.data.orders)
         setLoading(false)
       });
@@ -23,12 +24,15 @@ export default function AdminOrders() {
   }
 
   const displayOrders = orders.map((order) => {
+
     return (
       <AdminOrderView
-        key={order.id}
-        id={order.id}
-        table={order.table_number}
-        customer={order.customer_name}
+        key={order.orderid}
+        id={order.orderid}
+        table={order.table}
+        customer={order.customer}
+        item={order.item}
+        itemPrice ={order.itemprice}
         price={order.order_total_cents}
       />
     );
