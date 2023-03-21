@@ -7,11 +7,11 @@ export default function MenuItem(props) {
   return (
     <li className="menu-item">
       <div className="item-details">
-        <h2 className="item-name">Cheeseburger</h2>
-        <p className="item-description">Two grilled patties, melted american cheese, caramelized onions, tomato, shredded lettuce and secret house sauce</p>
+        <h2 className="item-name">{props.name}</h2>
+        <p className="item-description">{props.description}</p>
       </div>
       <div className="price-quantity">
-        <h2>$15.99</h2>
+        <h2>${props.price_cents/100}</h2>
         <p>- or +</p>
       </div>
     </li>
