@@ -4,10 +4,12 @@ export default function UserMenuItem(props) {
 
   return (  
   <>
-  <div>
-    <h1>{props.title}</h1>
-    <h2>{props.details}</h2>
-    <h3>{props.price / 100}</h3>
+  <div class="user-menu-item">
+    <div class="item-info">
+      <h1>{props.title}</h1>
+      <h3>{props.price / 100}</h3>
+    </div>
+    {props.details}
   </div>
   </>
   )
