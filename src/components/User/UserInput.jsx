@@ -77,7 +77,7 @@ function UserInput() {
                   class="btn btn-primary btn-block btn-lg" 
                   value="Continue to Menu"
                   onClick={() => {
-                    window.location.href = '/menu';
+                    window.location.href = '/user/menu';
                   }}
                 />
               </div>
