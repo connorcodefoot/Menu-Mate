@@ -39,9 +39,8 @@ export default function UserMenu() {
         onClick={(id) => {console.log(id)}}
       /> 
     )
-
-
   })
+  
   const displayMenus = menus.map((menu) => {
     return (
       <>
