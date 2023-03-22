@@ -4,7 +4,6 @@ import 'components/User/Cart.scss';
 
 function Cart() {
   const [selectedOptions, setSelectedOptions] = useState({});
-
   const [items, setItems] = useState([]);
 
 useEffect(() => {
@@ -24,13 +23,6 @@ useEffect(() => {
       [itemId]: optionValue
     }));
   }
-
-  // function handleRemoveItem(itemId) {
-  //   setSelectedOptions(prevState => {
-  //     const { [itemId]: removedItem, ...restOptions } = prevState;
-  //     return restOptions;
-  //   });
-  // }
 
   const filteredItems = items.filter(item => {
     return !selectedOptions[item.id] || selectedOptions[item.id] !== "0";
@@ -86,12 +78,6 @@ useEffect(() => {
                 10
               </option>
             </select>
-            {/* <button
-              class="order-button"
-              onClick={() => handleRemoveItem(item.id)}
-            >
-              Remove Item
-            </button> */}
           </li>
         ))}
       </ul>
