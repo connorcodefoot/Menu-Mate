@@ -16,26 +16,12 @@ nav {
   position: relative;
 }
 
-
 .menu {
   max-width: 500px;
   margin: auto;
   padding: 1rem;
   background-color: #fafafa;
 }
-
-// .menu h1 {
-//   font-size: 1.5rem;
-//   margin: 0;
-//   padding-bottom: 1rem;
-//   border-bottom: 1px solid #ddd;
-// }
-
-// .menu ul {
-//   list-style: none;
-//   margin: 0;
-//   padding: 0;
-// }
 
 .menu li {
   display: flex;
@@ -54,12 +40,6 @@ nav {
   margin: 0;
   margin-bottom: 0.5rem;
 }
-
-// .menu li p {
-//   margin: 0;
-//   margin-bottom: 0.5rem;
-//   font-size: 1rem;
-// }
 
 .checkout-container {
   display: flex;
@@ -80,9 +60,3 @@ nav {
   justify-content: center;
   text-align: center;
 }
-
-// @media (max-width: 390px) {
-//   .menu {
-//     max-width: 100%;
-//   }
-// }
