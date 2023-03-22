@@ -3,6 +3,12 @@
   flex-direction: column;
 }
 
+.menu-list {
+  display: flex;
+  display: row;
+  justify-content: space-around;
+}
+
 .user-menu-item {
   display: flex;
   flex: 1;
@@ -33,3 +39,4 @@
   height: 2rem;
   width: 2rem;
 }
+
