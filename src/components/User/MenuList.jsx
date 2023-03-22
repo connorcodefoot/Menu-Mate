@@ -5,7 +5,7 @@ export default function MenuList(props) {
 
   return (  
     <li
-    onClick={() => {props.onClick(props.id)}}
+    onClick={() => {}}
     >
     <div class="menu-list">
       <button>{props.title}</button>
