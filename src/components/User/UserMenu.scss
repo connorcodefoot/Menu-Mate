@@ -3,6 +3,12 @@
   flex-direction: column;
 }
 
+.menu-list {
+  display: flex;
+  display: row;
+  justify-content: space-around;
+}
+
 .user-menu-item {
   display: flex;
   flex: 1;
@@ -40,3 +46,4 @@ img {
   border-radius: 10px;
   object-fit: cover;
 }
+

@@ -1,44 +1,63 @@
 import React from "react";
 import UserMenuItem from "./UserMenuItem";
+import MenuList from "./MenuList"
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import 'components/User/UserMenu.scss'
+import 'components/User/UserMenu.scss';
+
 
 export default function UserMenu() {
 
+  // SET STATES
   const [isLoading, setLoading] = useState(true);
-  const [items, setItems] = useState()
+  const [menus, setMenus] = useState ()
 
+  // LOAD DEFAULT PAGE
   useEffect(() => {
-    axios.get('/api/user/menus')
-      .then((res) => {
-        console.log(res)
-        setItems(res.data.items)
-        setLoading(false)
-      });
-  }, []);
+
+    Promise.all([
+      axios.get('/api/user/menus'),
+   ])
+    .then((all) => {
+      setMenus(all[0].data.menus)
+      setLoading(false)
+    })
+  }, [])
 
   if (isLoading) {
-    return <div> LOADING </div>
+    return <div> LOADING </div>;
   }
 
-  const displayItems = items.map((item) => {
+  const displayMenuButtons = menus.map((menu) => {
+
     return (
-      <UserMenuItem
-        key={item.id}
-        id={item.id}
-        title={item.title}
-        details={item.details}
-        price={item.price_cents}
-        picture={item.picture}
-      />
+      <MenuList
+        key={menu.id}
+        id={menu.id}
+        title={menu.title}
+        onClick={(id) => {console.log(id)}}
+      /> 
+    )
+  })
+  
+  const displayMenus = menus.map((menu) => {
+    return (
+      <>
+      <h1>{menu.title}</h1>
+      <ul><UserMenuItem 
+        menuID={menu.id}
+      /></ul>
+      </>
     );
   });
 
+  // RETURN MENU
+
   return (
-    <div class="user-menu">
-      {displayItems}
-    </div>
-  )
-}
+    <>
+      <ul>{displayMenuButtons}</ul>
+      <ul>{displayMenus}</ul>
+    </>
+  );
+};
