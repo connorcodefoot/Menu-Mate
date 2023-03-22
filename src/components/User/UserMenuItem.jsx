@@ -6,6 +6,7 @@ export default function UserMenuItem(props) {
   <>
   <div class="user-menu-item">
     <div class="item-info">
+      <img src={props.picture} class="item-imgs" />
       <h1>{props.title}</h1>
       {props.details} 
     </div>

@@ -31,6 +31,7 @@ export default function UserMenu() {
         title={item.title}
         details={item.details}
         price={item.price_cents}
+        picture={item.picture}
       />
     );
   });
