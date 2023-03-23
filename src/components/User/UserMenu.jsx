@@ -5,6 +5,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import 'components/User/UserMenu.scss';
+import { Context, useContext } from '../../Context/index';
 
 
 export default function UserMenu() {
@@ -12,6 +13,9 @@ export default function UserMenu() {
   // SET STATES
   const [isLoading, setLoading] = useState(true);
   const [menus, setMenus] = useState ()
+
+  const { state } = useContext(Context);
+  
 
   // LOAD DEFAULT PAGE
   useEffect(() => {
@@ -36,7 +40,7 @@ export default function UserMenu() {
         key={menu.id}
         id={menu.id}
         title={menu.title}
-        onClick={(id) => {console.log(id)}}
+        state={state.cart}
       /> 
     )
   })
@@ -45,9 +49,12 @@ export default function UserMenu() {
     return (
       <>
       <h1>{menu.title}</h1>
-      <ul><UserMenuItem 
+      <ul>
+      <UserMenuItem 
         menuID={menu.id}
-      /></ul>
+        cart={state.cart}
+      />
+      </ul>
       </>
     );
   });
