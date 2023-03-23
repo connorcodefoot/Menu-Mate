@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import 'components/User/UserInput.scss';
 
-
 function UserInput() {
   const [state, setState] = useState({
     name: "",
@@ -62,7 +61,7 @@ function UserInput() {
 
               <div>
                 <input
-                  type="tel"
+                  type="text"
                   class="form-control"
                   name="phone"
                   placeholder="Phone Number"
@@ -90,4 +89,5 @@ function UserInput() {
 }
 
 export default UserInput;
+
 
