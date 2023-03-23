@@ -2,8 +2,14 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Context, useContext } from '../../Context/index';
+
 
 export default function UserMenuItem(props) {
+
+  const { addToCart } = useContext(Context);
+  const { cart } = props
+
 
   const [isLoading, setLoading] = useState(true);
   const [items, setItems] = useState ()
@@ -35,7 +41,19 @@ export default function UserMenuItem(props) {
         </div>
         <div class="item-option">
           <h3>{item.price_cents / 100}</h3>
-          <button class="add-item">+</button>
+          <button className="add-item" onClick={() => addToCart(item)} >
+            +
+          </button>
+          {cart.map((cartItem) =>
+            cartItem.id === item.id ? (
+              cartItem.count > 0 ? (
+                <span style={{ marginLeft: '5px' }}>
+                  {' '}
+                  ({cartItem.count} in the shopping cart){' '}
+                </span>
+              ) : null
+            ) : null
+          )}
         </div>
       </div>
     </>
@@ -45,6 +63,7 @@ export default function UserMenuItem(props) {
   return (  
   <>
     {displayItems}
+    {console.log(cart)}
   </>
   )
 }
