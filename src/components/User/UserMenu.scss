@@ -47,3 +47,28 @@ img {
   object-fit: cover;
 }
 
+.menu-btns {
+  display: flex;
+  overflow-x: scroll;
+  white-space: nowrap;
+  border: none;
+  color: #f59068;
+  background: white;
+  font-size: 15px;
+}
+
+.menu-btns ul {
+  list-style-type: none;
+  margin: 15px;
+  padding: 0;
+}
+
+.menu-btns li {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: 2px solid #f59068;
+  background-color: white;
+  border-radius: 20px;
+}
+

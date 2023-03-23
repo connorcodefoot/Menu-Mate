@@ -1,14 +1,14 @@
 import React from "react";
 import UserMenuItem from "./UserMenuItem";
-import MenuList from "./MenuList"
+import MenuList from "./MenuList";
 import axios from "axios";
 import { useEffect } from "react";
-import { useState } from "react";
+import { useState} from "react";
 import 'components/User/UserMenu.scss';
 import { Context, useContext } from '../../Context/index';
 
 
-export default function UserMenu() {
+export default function UserMenu(props) {
 
   // SET STATES
   const [isLoading, setLoading] = useState(true);
@@ -22,12 +22,12 @@ export default function UserMenu() {
 
     Promise.all([
       axios.get('/api/user/menus'),
-   ])
-    .then((all) => {
-      setMenus(all[0].data.menus)
-      setLoading(false)
-    })
-  }, [])
+    ])
+      .then((all) => {
+        setMenus(all[0].data.menus);
+        setLoading(false);
+      });
+  }, []);
 
   if (isLoading) {
     return <div> LOADING </div>;
@@ -49,12 +49,9 @@ export default function UserMenu() {
     return (
       <>
       <h1>{menu.title}</h1>
-      <ul>
-      <UserMenuItem 
+      <ul><UserMenuItem 
         menuID={menu.id}
-        cart={state.cart}
-      />
-      </ul>
+      /></ul>
       </>
     );
   });
@@ -63,7 +60,9 @@ export default function UserMenu() {
 
   return (
     <>
-      <ul>{displayMenuButtons}</ul>
+      <div class="menu-btns">
+        <ul class="menu-list">{displayMenuButtons}</ul>
+      </div>
       <ul>{displayMenus}</ul>
     </>
   );
