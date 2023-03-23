@@ -6,36 +6,53 @@ function Cart() {
   const [selectedOptions, setSelectedOptions] = useState({});
   const [items, setItems] = useState([]);
 
-useEffect(() => {
-  axios.get('/api/user/cart')
-    .then((res) => {
-      setItems(res.data.items);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}, []);
-
+  useEffect(() => {
+    axios.get('/api/user/cart')
+      .then((res) => {
+        setItems(res.data.items);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   function handleOptionChange(itemId, optionValue) {
-    setSelectedOptions(prevState => ({
-      ...prevState,
-      [itemId]: optionValue
-    }));
+    setSelectedOptions(prevState => {
+      const newSelectedOptions = { ...prevState };
+      if (optionValue === "0") {
+        // Remove the item from the cart
+        delete newSelectedOptions[itemId];
+  
+        // Remove the item from the items array
+        setItems(prevItems => prevItems.filter(item => item.id !== itemId));
+      } else {
+        // Update the selected option
+        newSelectedOptions[itemId] = optionValue;
+      }
+      return newSelectedOptions;
+    });
   }
 
-  const filteredItems = items.filter(item => {
-    return !selectedOptions[item.id] || selectedOptions[item.id] !== "0";
-  });
+  function getTotal() {
+    let total = 0;
+    items.forEach((item) => {
+      const selectedOption = selectedOptions[item.id] || "1";
+      const quantity = parseInt(selectedOption);
+      const itemTotal = quantity * (item.price_cents / 100);
+      total += itemTotal;
+    });
+    return total.toFixed(2);
+  }
 
   return (
     <>
       <nav>
-        <h1 class="rest-name"> *RESTAURANT NAME*</h1>
+        <h1 className="rest-name">*RESTAURANT NAME*</h1>
       </nav>
-      <ul class="menu">
-        {filteredItems.map(item => (
-          <li key={item.id} class="menu">
+      <h1 className="cart">Cart</h1>
+      <ul className="menu">
+        {items.map((item) => (
+          <li key={item.id} className="menu">
             <h2>{item.title}</h2>
             <p>{item.details}</p>
             <p>${item.price_cents / 100}</p>
@@ -81,8 +98,11 @@ useEffect(() => {
           </li>
         ))}
       </ul>
+      <div class="total">
+        <p>Total: ${getTotal()}</p>
+      </div>
       <div class="checkout-container">
-      <button class="checkout"> Checkout </button>
+        <button class="checkout"> Checkout </button>
       </div>
     </>
   );

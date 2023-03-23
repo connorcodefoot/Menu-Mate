@@ -5,7 +5,7 @@ nav {
 }
 
 .rest-name {
-  padding: 5em;
+  padding: 1em;
   text-align: center;
 }
 
@@ -44,7 +44,7 @@ nav {
 .checkout-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .checkout {
@@ -55,8 +55,23 @@ nav {
   font-weight: bold;
   padding: 0.75rem 3rem;
   border-radius: 0.25rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
   text-align: center;
+}
+
+.total {
+  border: solid lightgray;
+  max-width: 500px;
+  margin: auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.cart {
+  max-width: 500px;
+  margin: auto;
+  padding: 1rem;
 }
