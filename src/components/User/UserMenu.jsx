@@ -63,7 +63,9 @@ export default function UserMenu() {
 
   return (
     <>
+    <div class="menu-btns">
       <ul>{displayMenuButtons}</ul>
+    </div>
       <ul>{displayMenus}</ul>
     </>
   );
