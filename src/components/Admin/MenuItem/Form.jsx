@@ -6,6 +6,7 @@ export default function Form(props) {
   const [title, setTitle] = useState(props.title || "");
   const [details, setDetails] = useState(props.details || "");
   const [price, setPrice] = useState(props.price || "");
+  const [picture, setPicture] = useState(props.picture || "");
   const [active, setActive] = useState(props.active || false);
   const [error, setError] = useState("");
 
@@ -81,6 +82,18 @@ export default function Form(props) {
               placeholder="Enter Item Price"
               value={price}
               onChange={(event) => setPrice(event.target.value)}
+              data-testid="item-name-input"
+            />
+          </label>
+          <label>
+            Picture:
+            <input
+              className="item__create-input text--semi-bold"
+              name="picture"
+              type="text"
+              placeholder="Enter Picture URL"
+              value={picture}
+              onChange={(event) => setPicture(event.target.value)}
               data-testid="item-name-input"
             />
           </label>
