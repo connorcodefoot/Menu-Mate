@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import 'components/User/UserInput.scss';
-
+import MMLogo from '../../MMLogo.gif';
 
 function UserInput() {
   const [state, setState] = useState({
@@ -33,6 +33,7 @@ function UserInput() {
   return (
     <>
       <main class="main">
+        <img src={MMLogo} alt="MM Logo" class="logo"/>
         <h1 class="welcome"> WELCOME TO </h1>
         <h1 class="restaurant"> *RESTAURANT* </h1>
         <section>
@@ -62,7 +63,7 @@ function UserInput() {
 
               <div>
                 <input
-                  type="tel"
+                  type="text"
                   class="form-control"
                   name="phone"
                   placeholder="Phone Number"
@@ -90,4 +91,5 @@ function UserInput() {
 }
 
 export default UserInput;
+
 
