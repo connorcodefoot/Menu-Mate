@@ -48,10 +48,10 @@ export default function UserMenu(props) {
   const displayMenus = menus.map((menu) => {
     return (
       <>
-      <h1>{menu.title}</h1>
-      <ul><UserMenuItem 
-        menuID={menu.id}
-      /></ul>
+        <h1>{menu.title}</h1>
+        <ul><UserMenuItem
+          menuID={menu.id}
+        /></ul>
       </>
     );
   });
