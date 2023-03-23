@@ -1,43 +1,66 @@
 import React from "react";
 import AdminMenuItem from "./MenuItem/index";
 import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Context, useContext } from '../../Context/index';
+import MenuList from "../User/MenuList"
 import 'components/User/UserMenu.scss'
 
 export default function AdminMenu() {
+  // SET STATES
   const [isLoading, setLoading] = useState(true);
-  const [items, setItems] = useState()
+  const [menus, setMenus] = useState ()
 
+  const { state } = useContext(Context);
+  
+
+  // LOAD DEFAULT PAGE
   useEffect(() => {
-    axios.get('/api/user/menus')
-      .then((res) => {
-        console.log(res)
-        setItems(res.data.items)
-        setLoading(false)
-      });
-  }, []);
+
+    Promise.all([
+      axios.get('/api/user/menus'),
+   ])
+    .then((all) => {
+      setMenus(all[0].data.menus)
+      setLoading(false)
+    })
+  }, [])
 
   if (isLoading) {
-    return <div> LOADING </div>
+    return <div> LOADING </div>;
   }
 
-  const displayItems = items.map((item) => {
+  const displayMenuButtons = menus.map((menu) => {
+
     return (
-      <AdminMenuItem
-        key={item.id}
-        id={item.id}
-        title={item.title}
-        details={item.details}
-        price={item.price_cents}
-        active={item.active}
+      <MenuList
+        key={menu.id}
+        id={menu.id}
+        title={menu.title}
+        state={state.cart}
+      /> 
+    )
+  })
+
+  const displayMenus = menus.map((menu) => {
+    return (
+      <>
+      <h1>{menu.title}</h1>
+      <ul>
+      <AdminMenuItem 
+        menuID={menu.id}
       />
+      </ul>
+      </>
     );
   });
 
+  // RETURN MENU
+
   return (
-    <div class="user-menu">
-      {displayItems}
-    </div>
-  )
-}
+    <>
+      <ul>{displayMenuButtons}</ul>
+      <ul>{displayMenus}</ul>
+    </>
+  );
+};

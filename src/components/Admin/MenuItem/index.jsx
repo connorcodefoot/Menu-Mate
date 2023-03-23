@@ -52,6 +52,7 @@ export default function AdminMenuItem(props) {
     <article className="item">
       {mode === SHOW && (
         <Show
+          menuID={props.menuID}
           title={props.title}
           details={props.details}
           price={props.price}
