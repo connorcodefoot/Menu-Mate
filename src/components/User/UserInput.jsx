@@ -6,17 +6,20 @@ import { useContext, UserContext } from '../../Context/index';
 
 function UserInput() {
 
-const { userState } = useContext(UserContext);
-const { setState } = useState(userState)
+  const { user, setUser } = useContext(UserContext)
 
   const handleChange = (event) => {
-    setState({
-      ...userState,
+    setUser({
+      ...user,
       [event.target.name]: event.target.value
     });
-    console.log(userState)
   };
 
+  const handleSubmit = (event) => {
+
+      event.preventDefault()
+      window.location.href = 'www.google.com'
+    }
 
   useEffect(() => {
     // Add the home-background class to the body element (this is being used for background color on home page without affecting other pages)
@@ -36,14 +39,13 @@ const { setState } = useState(userState)
         <h1 class="restaurant"> *RESTAURANT* </h1>
         <section>
           <div class="input-field">
-            <form>
+            <form onSubmit={() => handleSubmit}>
               <div>
                 <input
                   type="text"
                   class="form-control"
                   name="name"
                   placeholder="Name"
-                  value={userState.name}
                   onChange={handleChange} required
                 />
               </div>
@@ -54,7 +56,6 @@ const { setState } = useState(userState)
                   class="form-control"
                   name="table"
                   placeholder="Table Number"
-                  value={userState.table}
                   onChange={handleChange} required
                 />
               </div>
@@ -65,7 +66,6 @@ const { setState } = useState(userState)
                   class="form-control"
                   name="phone"
                   placeholder="Phone Number"
-                  value={userState.phone}
                   onChange={handleChange} required
                 />
               </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import { Context, useContext } from 'Context/index';
 import CartItem from './CartItem';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 
 const Cart2 = () => {
@@ -14,7 +13,6 @@ const Cart2 = () => {
   axios.post('/api/stripe/create-checkout-session')
 
 
-  let navigate = useNavigate(); 
   const stripeCheckout = function () {
     axios.get('/api/stripe/checkout-url')
     .then((res) => {

@@ -21,12 +21,10 @@ export default function Application() {
   const [state, setState] = useState({
     data: data,
     cart: [],
-    user: {
-      name: '',
-      table: '',
-      phone: ''
-    }
   });
+
+  const [user, setUser] = useState(null)
+
 
   const addToCart = (item) => {
     setState({
@@ -92,8 +90,7 @@ export default function Application() {
     <Context.Provider
       value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal }}
     >
-      <UserContext.Provider
-        value={state.user}
+      <UserContext.Provider value={{user, setUser}}
       >
 
       <BrowserRouter>
