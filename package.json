@@ -13,7 +13,8 @@
     "react-context-api": "^1.0.2",
     "react-dom": "^16.9.0",
     "react-router-dom": "^6.9.0",
-    "react-scripts": "3.4.4"
+    "react-scripts": "3.4.4",
+    "stripe": "^11.16.0"
   },
   "scripts": {
     "start": "react-scripts start",
