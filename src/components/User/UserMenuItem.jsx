@@ -36,11 +36,11 @@ export default function UserMenuItem(props) {
       <div class="user-menu-item">
         <div class="item-info">
         <img src={item.picture} class="item-imgs" />
-          <h1>{item.title}</h1>
+          <h1 class="item-name">{item.title}</h1>
           {item.details} 
         </div>
         <div class="item-option">
-          <h3>{item.price_cents / 100}</h3>
+          <h3 class="menu-price">{item.price_cents / 100}</h3>
           <button className="add-item" onClick={() => addToCart(item)} >
             +
           </button>

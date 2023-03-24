@@ -48,7 +48,7 @@ export default function UserMenu() {
   const displayMenus = menus.map((menu) => {
     return (
       <>
-        <h1>{menu.title}</h1>
+        <h1 class="menu-categ">{menu.title}</h1>
         <ul>
           <UserMenuItem
             menuID={menu.id}
