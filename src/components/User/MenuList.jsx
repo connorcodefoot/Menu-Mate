@@ -8,7 +8,7 @@ export default function MenuList(props) {
     onClick={() => {}}
     >
     <div class="menu-list">
-      <button>{props.title}</button>
+      <button class="menu-btns">{props.title}</button>
     </div>
     </li>
   )
