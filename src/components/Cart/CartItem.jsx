@@ -14,15 +14,15 @@ const CartItem = (props) => {
         </span>
         <span style={{ display: 'flex' }}>
           <span>
-            <b>Price:</b> ₺ {item.price_cents.toFixed(2)} <br />
+            <b>Price </b> ${item.price_cents.toFixed(2)/100} <br />
           </span>
           {item.count > 1 && (
             <>
               <span style={{ marginLeft: '1rem' }}>
-                <b>Count: </b>x{item.count}
+                <b>Quantity </b>x{item.count}
               </span>
               <span style={{ marginLeft: '1rem' }}>
-                <b>Total:</b> ₺ {(item.price_cents * item.count).toFixed(2)}
+                <b>Subtotal </b> ${(item.price_cents * item.count).toFixed(2)/100}
               </span>
             </>
           )}
@@ -33,7 +33,7 @@ const CartItem = (props) => {
             -{' '}
           </button>
           <button onClick={() => removeItem(item.id)} className="remove-btn">
-            delete
+            remove
           </button>
           <button onClick={() => increase(item)} className="cart-btn">
             {' '}

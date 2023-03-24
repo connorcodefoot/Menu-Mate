@@ -2,18 +2,19 @@ import React from "react";
 
 import "components/Application.scss";
 
-import AdminOrders from "pages/AdminOrders"
+import AdminOrders from "pages/AdminOrders";
 import AdminPortal from "pages/AdminPortal";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserHome from "pages/UserHome";
 import MenuItem from "./MenuItem";
 import UserCart from "pages/UserCart";
 import UserMenu from "pages/UserMenu";
-import { Context } from '../Context/index'
+import { Context } from '../Context/index';
 import { useState } from "react";
 import CartView from "pages/CartView";
-import { data } from '../data'
+import { data } from '../data';
 import { NavLink } from "react-router-dom";
+
 
 export default function Application() {
 
@@ -27,13 +28,13 @@ export default function Application() {
       ...state,
       cart: state.cart.find((cartItem) => cartItem.id === item.id)
         ? state.cart.map((cartItem) =>
-            cartItem.id === item.id
-              ? { ...cartItem, count: cartItem.count + 1 }
-              : cartItem
-          )
+          cartItem.id === item.id
+            ? { ...cartItem, count: cartItem.count + 1 }
+            : cartItem
+        )
         : [...state.cart, { ...item, count: 1 }],
     });
-    console.log(state.cart)
+    console.log(state.cart);
   };
 
   const increase = (item) => {
@@ -70,24 +71,36 @@ export default function Application() {
     0
   );
 
+  const cartTotal = () => {
+
+    let total = 0;
+
+    state.cart.forEach((item) => {
+      total += (item.price_cents * item.count);
+    });
+
+    return total;
+
+  };
+
   return (
     <Context.Provider
-    value={{ state: state, addToCart, increase, decrease, removeItem}}
-  >
-    <BrowserRouter>
-      <NavLink className="btn" activeClassName="active" to="/cart">
+      value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal }}
+    >
+      <BrowserRouter>
+        <NavLink className="btn" activeClassName="active" to="/cart">
           Cart ({cartItemCount > 0 ? cartItemCount : 0})
         </NavLink>
-      <Routes>
-        <Route path="/admin" element={<AdminPortal />}></Route>
-        <Route path="/" element={<UserHome />}></Route>
-        <Route path="/user/menu" element={<UserMenu />}></Route>
-        <Route path="/menu" element={<MenuItem />}></Route>
-        <Route path="admin/orders" element={<AdminOrders />}></Route>
-        <Route path="user/cart" element={<UserCart />}></Route>
-        <Route path="/cart" element={<CartView />}></Route>
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route path="/admin" element={<AdminPortal />}></Route>
+          <Route path="/" element={<UserHome />}></Route>
+          <Route path="/user/menu" element={<UserMenu />}></Route>
+          <Route path="/menu" element={<MenuItem />}></Route>
+          <Route path="admin/orders" element={<AdminOrders />}></Route>
+          <Route path="user/cart" element={<UserCart />}></Route>
+          <Route path="/cart" element={<CartView />}></Route>
+        </Routes>
+      </BrowserRouter>
     </Context.Provider>
   );
 }
