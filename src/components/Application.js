@@ -8,8 +8,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserHome from "pages/UserHome";
 import MenuItem from "./MenuItem";
 import UserCart from "pages/UserCart";
-import UserMenu from "pages/UserMenu";
-import { Context } from '../Context/index';
+import UserMenuView from "pages/UserMenuView";
+import { Context, UserContext } from '../Context/index';
 import { useState } from "react";
 import CartView from "pages/CartView";
 import { data } from '../data';
@@ -21,6 +21,7 @@ export default function Application() {
   const [state, setState] = useState({
     data: data,
     cart: [],
+    user: {}
   });
 
   const addToCart = (item) => {
@@ -87,6 +88,10 @@ export default function Application() {
     <Context.Provider
       value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal }}
     >
+      <UserContext.Provider
+        value={state.user}
+      >
+
       <BrowserRouter>
         <NavLink className="btn" activeClassName="active" to="/cart">
           Cart ({cartItemCount > 0 ? cartItemCount : 0})
@@ -94,13 +99,14 @@ export default function Application() {
         <Routes>
           <Route path="/admin" element={<AdminPortal />}></Route>
           <Route path="/" element={<UserHome />}></Route>
-          <Route path="/user/menu" element={<UserMenu />}></Route>
+          <Route path="/user/menu" element={<UserMenuView />}></Route>
           <Route path="/menu" element={<MenuItem />}></Route>
           <Route path="admin/orders" element={<AdminOrders />}></Route>
           <Route path="user/cart" element={<UserCart />}></Route>
           <Route path="/cart" element={<CartView />}></Route>
         </Routes>
       </BrowserRouter>
+      </UserContext.Provider>
     </Context.Provider>
   );
 }

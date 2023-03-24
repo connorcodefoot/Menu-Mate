@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import 'components/User/UserInput.scss';
 import MMLogo from '../../MMLogo.gif';
+import UserMenuView from "pages/UserMenuView";
 
 function UserInput() {
   const [state, setState] = useState({
@@ -16,8 +17,8 @@ function UserInput() {
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
+    return <UserMenuView />
   };
 
   useEffect(() => {
@@ -77,9 +78,7 @@ function UserInput() {
                   type="submit"
                   class="btn btn-primary btn-block btn-lg" 
                   value="Continue to Menu"
-                  onClick={() => {
-                    window.location.href = '/user/menu';
-                  }}
+                  onClick={{handleSubmit}}
                 />
               </div>
             </form>
