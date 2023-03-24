@@ -47,9 +47,9 @@ export default function UserMenuItem(props) {
           {cart.map((cartItem) =>
             cartItem.id === item.id ? (
               cartItem.count > 0 ? (
-                <span style={{ marginLeft: '5px' }}>
+                <span class="menu-cart">
                   {' '}
-                  ({cartItem.count} in the shopping cart){' '}
+                  {cartItem.count} in your cart{' '}
                 </span>
               ) : null
             ) : null
