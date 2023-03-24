@@ -21,7 +21,11 @@ export default function Application() {
   const [state, setState] = useState({
     data: data,
     cart: [],
-    user: {}
+    user: {
+      name: '',
+      table: '',
+      phone: ''
+    }
   });
 
   const addToCart = (item) => {

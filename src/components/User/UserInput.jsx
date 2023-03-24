@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from "react";
 import 'components/User/UserInput.scss';
 import MMLogo from '../../MMLogo.gif';
-import UserMenuView from "pages/UserMenuView";
+import { useContext, UserContext } from '../../Context/index';
+
 
 function UserInput() {
-  const [state, setState] = useState({
-    name: "",
-    table: "",
-    phone: ""
-  });
+
+const { userState } = useContext(UserContext);
+const { setState } = useState(userState)
 
   const handleChange = (event) => {
     setState({
-      ...state,
+      ...userState,
       [event.target.name]: event.target.value
     });
+    console.log(userState)
   };
 
-  const handleSubmit = () => {
-    return <UserMenuView />
-  };
 
   useEffect(() => {
     // Add the home-background class to the body element (this is being used for background color on home page without affecting other pages)
@@ -39,14 +36,14 @@ function UserInput() {
         <h1 class="restaurant"> *RESTAURANT* </h1>
         <section>
           <div class="input-field">
-            <form onSubmit={handleSubmit}>
+            <form>
               <div>
                 <input
                   type="text"
                   class="form-control"
                   name="name"
                   placeholder="Name"
-                  value={state.name}
+                  value={userState.name}
                   onChange={handleChange} required
                 />
               </div>
@@ -57,7 +54,7 @@ function UserInput() {
                   class="form-control"
                   name="table"
                   placeholder="Table Number"
-                  value={state.table}
+                  value={userState.table}
                   onChange={handleChange} required
                 />
               </div>
@@ -68,7 +65,7 @@ function UserInput() {
                   class="form-control"
                   name="phone"
                   placeholder="Phone Number"
-                  value={state.phone}
+                  value={userState.phone}
                   onChange={handleChange} required
                 />
               </div>
@@ -78,7 +75,6 @@ function UserInput() {
                   type="submit"
                   class="btn btn-primary btn-block btn-lg" 
                   value="Continue to Menu"
-                  onClick={{handleSubmit}}
                 />
               </div>
             </form>
