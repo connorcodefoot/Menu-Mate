@@ -1,4 +1,5 @@
 import React from "react";
+import 'components/User/UserMenu.scss';
 
 export default function MenuList(props) {
 
