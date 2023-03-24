@@ -18,7 +18,7 @@ function UserInput() {
   const handleSubmit = (event) => {
 
       event.preventDefault()
-      window.location.href = 'www.google.com'
+
     }
 
   useEffect(() => {
@@ -75,6 +75,7 @@ function UserInput() {
                   type="submit"
                   class="btn btn-primary btn-block btn-lg" 
                   value="Continue to Menu"
+                  onClick={()=>{window.location.href = '/user/menu';}}
                 />
               </div>
             </form>
