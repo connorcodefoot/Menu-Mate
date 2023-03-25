@@ -12,13 +12,25 @@ const Cart2 = () => {
 
   const { user } = useContext(UserContext)
 
-  axios.post('/api/stripe/create-checkout-session')
+  // axios.post('/api/stripe/create-checkout-session')
 
 
-  const stripeCheckout = function () {
-    axios.get('/api/stripe/checkout-url')
-    .then((res) => {
-    window.location.href = res.data.stripeSession.url
+  // const stripeCheckout = function () {
+  //   axios.get('/api/stripe/checkout-url')
+  //   .then((res) => {
+  //   window.location.href = res.data.stripeSession.url
+  //   })
+  // }
+
+  const showOrder = () => {
+
+    axios.post('/api/user/new-order', null, { params: {
+      customer_name: user.customer_name,
+      table_number: user.table_number,
+      // order_total_cents: 40
+    }})
+    .then(res => {
+      console.log(res)
     })
   }
 
@@ -31,9 +43,10 @@ const Cart2 = () => {
         />
       ))}
       Cart Total = ${total}
-      <button onClick={stripeCheckout}>
-        Checkout
+      <button onClick={showOrder}>
+        Submit Order
       </button>
+      <p>Don't worry, you  can modify your order in the next step and pay whenever you are ready</p>
     </div>
   );
 };
