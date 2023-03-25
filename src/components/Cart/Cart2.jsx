@@ -1,5 +1,5 @@
 import React from 'react';
-import { Context, useContext } from 'Context/index';
+import { Context, UserContext, useContext } from 'Context/index';
 import CartItem from './CartItem';
 import axios from 'axios';
 
@@ -9,6 +9,8 @@ const Cart2 = () => {
   const { state, cartTotal } = useContext(Context);
 
   const total = cartTotal()/100
+
+  const { user } = useContext(UserContext)
 
   axios.post('/api/stripe/create-checkout-session')
 
