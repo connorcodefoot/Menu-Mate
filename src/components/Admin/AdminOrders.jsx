@@ -13,7 +13,6 @@ export default function AdminOrders() {
   useEffect(() => {
     axios.get('/api/admin/orders')
       .then((res) => {
-        console.log(res)
         setOrders(res.data.orders)
         setLoading(false)
       });
