@@ -1,12 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
 .admin-nav {
   display: flex;
   flex-direction: row;
   justify-content:space-between;
   width: 100%;
-  height: 5rem;
-  background-color: #f59068;
+  height: 6rem;
+  background: linear-gradient(to bottom, #ed7a00f3, transparent);
+  // background: rgb(245, 144, 104);
+  // background: linear-gradient(55deg, rgba(245, 144, 104, 1) 0%, rgba(250, 130, 34, 1) 36%, rgba(251, 123, 79, 0.9542410714285714) 64%, rgba(252, 69, 136, 0.9346332282913166) 100%);
   color: white;
   padding: 1rem;
+  text-align: center;
 }
 
 .admin-nav-buttons {
@@ -20,11 +29,8 @@
   border-radius: 30px;
   background-color: transparent;
   color: white;
-
 }
 
 .admin-nav-button:hover {
-  background-color: lightgrey;
+  background-color: #ed7a00f3;
 }
-
-
