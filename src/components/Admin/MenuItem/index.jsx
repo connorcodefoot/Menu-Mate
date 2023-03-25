@@ -1,41 +1,45 @@
 import React from "react";
+import axios from "axios";
+
+import { useState } from "react";
+import { Context, useContext } from '../../../Context/index';
 
 import Show from "./Show";
-import Form from "./Form";
-import Error from "./Error";
-
-import useVisualMode from "../../../hooks/useVisualMode";
 
 export default function AdminMenuItem(props) {
-  const SHOW = "SHOW";
-  const CREATE = "CREATE";
-  const SAVING = "SAVING";
-  const DELETING = "DELETING";
-  const CONFIRM = "CONFIRM";
-  const EDIT = "EDIT";
-  const ERROR_SAVE = "ERROR";
-  const ERROR_DELETE = "ERROR_DELETE";
+  const { state } = useContext(Context);
 
-  const { mode, transition, back } = useVisualMode(
-    props.title ? SHOW : SHOW
-  );
+  const [item, setItem] = useState({
+    title: "",
+    details: "",
+    price_cents: 0,
+    picture: ""
+  })
 
-  function saveItem(title, details, price, active) {
-    const item = {
+  function saveItem(title, details, price, picture) {
+    const newItem = {
       title: title,
       details: details,
       price: price,
-      active: active
+      picture: picture
     };
 
-    transition(SAVING);
-    props
-      .saveItem(props.id)
-      .then((resolved) => {
-        console.log("resolve", resolved);
-        transition(SHOW);
-      })
-      .catch(error => transition(ERROR_SAVE, true));
+
+    return new Promise((resolve, reject) => {
+      axios.put(`/api/admin/menus/${item.id}`)
+        .then(() => {
+          setItem({
+            newItem
+          });
+          resolve(true);
+          transition(SHOW);
+        })
+        .catch(error => {
+          reject(true);
+          transition(ERROR_SAVE, true)
+          console.log(error);
+        });
+    });
   }
 
   function deleteItem(event) {
@@ -53,20 +57,8 @@ export default function AdminMenuItem(props) {
       {mode === SHOW && (
         <Show
           menuID={props.menuID}
-          title={props.title}
-          details={props.details}
-          price={props.price}
-          active={props.active}
-          onEdit={() => {
-            transition(EDIT)
-            console.log("clicked")
-          }}
         />
       )}
-      {mode === CREATE && <Form onCancel={() => back()} onSave={saveItem} />}
-      {mode === EDIT && <Form onCancel={() => back()} onSave={saveItem}/>}
-      {mode === ERROR_SAVE && <Error message="Could not save appointment." onClose={() => back()} />}
-      {mode === ERROR_DELETE && <Error message="Could not cancel appointment." onClose={() => back()} />}
     </article>
   );
 }

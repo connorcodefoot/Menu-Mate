@@ -9,10 +9,9 @@ import 'components/User/UserMenu.scss'
 export default function AdminMenu() {
   // SET STATES
   const [isLoading, setLoading] = useState(true);
-  const [menus, setMenus] = useState ()
+  const [menus, setMenus] = useState ();
 
   const { state } = useContext(Context);
-  
 
   // LOAD DEFAULT PAGE
   useEffect(() => {

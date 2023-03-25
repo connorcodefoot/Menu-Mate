@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import Button from "../../Button";
+import Button from "../Button";
+import { useLocation } from "react-router-dom";
 
-export default function Form(props) {
+export default function AdminForm(props) {
+  const [id, setId] = useState(props.id || "");
   const [title, setTitle] = useState(props.title || "");
   const [details, setDetails] = useState(props.details || "");
   const [price, setPrice] = useState(props.price || "");
@@ -11,6 +13,34 @@ export default function Form(props) {
   const [error, setError] = useState("");
 
   console.log(props)
+
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log("location:", location)
+    const { id, title, details, price, picture } = location.state
+
+    if (id) {
+      setId(id)
+    }
+
+    if (title) {
+      setTitle(title)
+    }
+
+    if (details) {
+      setDetails(details)
+    }
+
+    if (price) {
+      setPrice(price)
+    }
+
+    if (picture) {
+      setPicture(picture)
+    }
+    
+  }, [])
 
   const reset = () => {
     setTitle("");
@@ -61,7 +91,7 @@ export default function Form(props) {
               type="text"
               label="Item Name:"
               placeholder="Enter Item Name"
-              value={title ? props.title : "Enter Item Name"}
+              value={title}
               onChange={(event) => setTitle(event.target.value)}
               data-testid="item-name-input"
             />
@@ -108,8 +138,7 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={cancel}
-          >Cancel</Button>
+          <Button danger onClick={cancel}>Cancel</Button>
           <Button confirm onClick={validate}>Save</Button>
         </section>
       </section>

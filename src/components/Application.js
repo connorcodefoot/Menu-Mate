@@ -5,6 +5,7 @@ import "components/Application.scss";
 import AdminOrders from "pages/AdminOrders"
 import AdminPortal from "pages/AdminPortal";
 import AdminMenu from "pages/AdminMenu";
+import AdminForm from "pages/AdminForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserHome from "pages/UserHome";
 import UserCart from "pages/UserCart";
@@ -84,6 +85,7 @@ export default function Application() {
         <Route path="/user/menu" element={<UserMenu />}></Route>
         <Route path="/admin/menu" element={<AdminMenu />}></Route>
         <Route path="admin/orders" element={<AdminOrders />}></Route>
+        <Route path="admin/form" element={<AdminForm />}></Route>
         <Route path="user/cart" element={<UserCart />}></Route>
         <Route path="/cart" element={<CartView />}></Route>
       </Routes>

@@ -1,12 +1,29 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Context, useContext } from '../../../Context/index';
 import 'components/User/UserMenu.scss'
+import ShowItem from "./ShowItem";
+import { useNavigate } from "react-router-dom";
 
 export default function Show(props) {
 
   const [isLoading, setLoading] = useState(true);
   const [items, setItems] = useState ()
+  
+  const { state } = useContext(Context);
+
+  const navigate = useNavigate();
+
+  const redirect = (id, title, details, price, picture) => {
+    navigate('/admin/form', {state: {
+      id,
+      title,
+      details,
+      price, 
+      picture
+    }})
+  }
 
   useEffect(() => {
 
@@ -25,30 +42,17 @@ export default function Show(props) {
   }
 
     const displayItems = items.map((item) => {
+
     return (
       <>
-      <div class="user-menu-item">
-        <div class="item-info">
-        <img src={item.picture} class="item-imgs" />
-          <h1>{item.title}</h1>
-          {item.details} 
-        </div>
-        <div class="item-option">
-          <h3>{item.price_cents / 100}</h3>
-        </div>
-        <section className="item__actions">
-          <button
-            className="appointment__actions-button"
-            alt="Edit"
-            onClick={props.onEdit}
-          >Edit</button>
-          <button
-            className="appointment__actions-button"
-            alt="Delete"
-            onClick={props.onDelete}
-          >Delete</button>
-        </section>
-      </div>
+      <ShowItem
+        id={item.id}
+        title={item.title}
+        details={item.details}
+        price={item.price_cents}
+        picture={item.picture}
+        onEdit={redirect}
+      />
     </>
     );
   });
