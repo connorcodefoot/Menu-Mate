@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import 'components/User/UserInput.scss';
 import MMLogo from '../../MMLogo.gif';
 import { useContext, UserContext } from '../../Context/index';
+import UserMenuView from "pages/UserMenuView";
+import { useNavigate } from "react-router-dom";
 
 
 function UserInput() {
@@ -15,9 +17,12 @@ function UserInput() {
     });
   };
 
+  const navigate = useNavigate()
+
   const handleSubmit = (event) => {
 
       event.preventDefault()
+      navigate('/user/menu')
 
     }
 
@@ -39,7 +44,7 @@ function UserInput() {
         <h1 class="restaurant"> *RESTAURANT* </h1>
         <section>
           <div class="input-field">
-            <form onSubmit={() => handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <div>
                 <input
                   type="text"
@@ -71,12 +76,11 @@ function UserInput() {
               </div>
 
               <div>
-                <input
+                <button          
                   type="submit"
-                  class="btn btn-primary btn-block btn-lg" 
-                  value="Continue to Menu"
-                  onClick={()=>{window.location.href = '/user/menu';}}
-                />
+                  class="btn btn-primary btn-block btn-lg">
+                  Continue to Menu
+                </button>
               </div>
             </form>
           </div>
