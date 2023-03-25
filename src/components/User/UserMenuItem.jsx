@@ -63,7 +63,6 @@ export default function UserMenuItem(props) {
   return (  
   <>
     {displayItems}
-    {console.log(cart)}
   </>
   )
 }
