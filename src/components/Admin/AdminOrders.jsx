@@ -20,7 +20,7 @@ export default function AdminOrders() {
   }, []);
 
   if (isLoading) {
-    return <div> LOADING </div>
+    return <div class="admin-loading"> LOADING </div>
   }
 
   const displayOrders = orders.map((order) => {
@@ -44,6 +44,3 @@ export default function AdminOrders() {
     </div>
   )
 }
-
-
-

@@ -41,6 +41,7 @@ export default function UserMenu() {
         id={menu.id}
         title={menu.title}
         state={state.cart}
+        href={`#${menu.title.replace(/\s+/g, '-').toLowerCase()}`}
       />
     );
   });
@@ -48,7 +49,7 @@ export default function UserMenu() {
   const displayMenus = menus.map((menu) => {
     return (
       <>
-        <h1 class="menu-categ">{menu.title}</h1>
+        <h1 id={menu.title.replace(/\s+/g, '-').toLowerCase()} class="menu-categ">{menu.title}</h1>
         <ul>
           <UserMenuItem
             menuID={menu.id}
