@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import Button from "../Button";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import Button from "../Button";
 
 export default function AdminForm(props) {
   const [id, setId] = useState(props.id || "");
@@ -12,12 +14,10 @@ export default function AdminForm(props) {
   const [active, setActive] = useState(props.active || false);
   const [error, setError] = useState("");
 
-  console.log(props)
-
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("location:", location)
     const { id, title, details, price, picture } = location.state
 
     if (id) {
@@ -39,19 +39,20 @@ export default function AdminForm(props) {
     if (picture) {
       setPicture(picture)
     }
-    
+
   }, [])
 
   const reset = () => {
     setTitle("");
     setDetails("");
     setPrice("");
+    setPicture("");
     setActive(false);
   }
 
   const cancel = () => {
     reset();
-    props.onCancel();
+    navigate('/admin/menu')
   }
 
   const validate = () => {
