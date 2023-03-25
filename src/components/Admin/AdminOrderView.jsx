@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import backgroundImage from "/Users/sam/Menu-Mate/src/admin-background.png"
+
 
 export default function AdminOrderView(props) {
   const [show, setShow] = useState(false);
