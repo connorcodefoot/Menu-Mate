@@ -37,7 +37,6 @@ export default function Application() {
         )
         : [...state.cart, { ...item, count: 1 }],
     });
-    console.log(state.cart);
   };
 
   const increase = (item) => {
