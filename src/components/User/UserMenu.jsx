@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import 'components/User/UserMenu.scss';
-import { Context, useContext } from '../../Context/index';
+import { Context, UserContext, useContext } from '../../Context/index';
 
 
 export default function UserMenu() {
@@ -16,6 +16,7 @@ export default function UserMenu() {
 
   const { state } = useContext(Context);
 
+  const { user } = useContext(UserContext)
 
   // LOAD DEFAULT PAGE
   useEffect(() => {
