@@ -28,13 +28,15 @@ const Cart2 = () => {
   const showOrder = () => {
 
     axios.post('/api/user/new-order', {
-      'customer_name': user.name,
-      'table_number': user.table,
-      'order_total_cents': total })
+    cat: 'cat'})
     .then(res => {
       console.log(res)
     })
   }
+
+  // customer_name: user.name,
+  // table_number: user.table,
+  // order_total_cents: total })
 
   return (
     <div className="cart">
