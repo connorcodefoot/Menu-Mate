@@ -10,7 +10,6 @@ export default function UserMenuItem(props) {
   const { addToCart } = useContext(Context);
   const { cart } = props
 
-
   const [isLoading, setLoading] = useState(true);
   const [items, setItems] = useState ()
 
