@@ -10,7 +10,10 @@ const Cart2 = () => {
 
   const total = cartTotal()/100
 
+
   const { user } = useContext(UserContext)
+  console.log('cart logging:', user)
+
 
   // axios.post('/api/stripe/create-checkout-session')
 
@@ -24,11 +27,10 @@ const Cart2 = () => {
 
   const showOrder = () => {
 
-    axios.post('/api/user/new-order', null, { params: {
-      customer_name: user.customer_name,
-      table_number: user.table_number,
-      // order_total_cents: 40
-    }})
+    axios.post('/api/user/new-order', {
+      'customer_name': user.name,
+      'table_number': user.table,
+      'order_total_cents': total })
     .then(res => {
       console.log(res)
     })

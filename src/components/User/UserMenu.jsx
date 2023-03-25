@@ -17,6 +17,7 @@ export default function UserMenu() {
   const { state } = useContext(Context);
 
   const { user } = useContext(UserContext)
+  console.log('menu logging user:', user)
 
   // LOAD DEFAULT PAGE
   useEffect(() => {
