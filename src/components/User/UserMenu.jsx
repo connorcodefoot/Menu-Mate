@@ -16,9 +16,10 @@ export default function UserMenu() {
   const [isLoading, setLoading] = useState(true);
   const [menus, setMenus] = useState();
   const [open, setOpen] = useState(false);
-  const { state } = useContext(Context);
-  const { user, setUser } = useContext(UserContext)
 
+  const { state } = useContext(Context);
+
+  const { user } = useContext(UserContext)
   console.log(user)
 
   // Add cart to view

@@ -81,9 +81,16 @@ export default function Application() {
 
   };
 
+  const emptyCart = () => {
+    setState({
+      ...state,
+      cart: []
+    })
+  }
+
   return (
     <Context.Provider
-      value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal }}
+      value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal, emptyCart}}
     >
       <UserContext.Provider value={{user, setUser}}
       >

@@ -7,18 +7,18 @@ import { Link } from 'react-router-dom';
 import 'components/Cart/UserOrder.scss';
 // import UserOrder from './UserOrder';
 import { useState } from 'react';
+// import UserOrderItem from './UserOrderItem';
+import UserOrder from './UserOrder.jsx';
 
 
 const Cart2 = () => {
 
   // State controller
   const { state, cartTotal } = useContext(Context);
-  // const [ orderView, showOrder ] = useState(false);
-  const [ order, orderState ] = useState()
-
+  const [orderDetailsView, showOrderDetails] = useState(false)
+  const [orderID, setOrderID] = useState(1)
   const total = cartTotal() / 100;
   const { user } = useContext(UserContext);
-  const cart = state.cart
   // axios.post('/api/stripe/create-checkout-session')
 
 
@@ -29,9 +29,9 @@ const Cart2 = () => {
   //   })
   // }
 
-  const submitOrder = () => {
-
-    console.log('cart', state.cart)
+  // Create an Order and get back an ID
+  
+    const submitOrder = () => {
 
     const order = {
       customer_name: user.name,
@@ -40,20 +40,14 @@ const Cart2 = () => {
     };
 
     axios.post('/api/user/new-order', null, { params: order })
-      .then(data => {
-        orderState(data)
-        return axios.post('/api/user/new-order-item', null, { params: {
-
-          order: order,
-          items: cart
-
-        } })
-      .then(data => {
-        console.log('add items response:', data)
+      .then(res => {
+        setOrderID(res.data.rows[0].id)
       })
+      .then(() => {
+        showOrderDetails(true)
       })
-      .catch((err) => { return 'error'; });
-    };
+        .catch((err) => { return 'error'; });
+  };
 
   return (
     <>
@@ -64,6 +58,8 @@ const Cart2 = () => {
             item={item}
           />
         ))}
+        {orderDetailsView && <UserOrder orderID={orderID} />}
+
         Cart Total = ${total}
         <button onClick={submitOrder}>
           Submit Order
