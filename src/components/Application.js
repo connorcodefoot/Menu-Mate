@@ -24,7 +24,7 @@ export default function Application() {
     cart: [],
   });
 
-  const addToCart = (item) => {
+  const addToCart = (item, note) => {
     setState({
       ...state,
       cart: state.cart.find((cartItem) => cartItem.id === item.id)
@@ -33,7 +33,7 @@ export default function Application() {
             ? { ...cartItem, count: cartItem.count + 1 }
             : cartItem
         )
-        : [...state.cart, { ...item, count: 1 }],
+        : [...state.cart, { ...item, count: 1, note }],
     });
     console.log(state.cart);
   };
@@ -54,11 +54,12 @@ export default function Application() {
       ...state,
       cart: state.cart.map((cartItem) =>
         cartItem.id === item.id
-          ? { ...cartItem, count: cartItem.count > 1 ? cartItem.count - 1 : 1 }
+          ? { ...cartItem, count: cartItem.count - 1 }
           : cartItem
       ),
     });
   };
+  
 
   const removeItem = (id) => {
     setState({
