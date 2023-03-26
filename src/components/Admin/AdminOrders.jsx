@@ -8,40 +8,53 @@ import { useState } from "react";
 export default function AdminOrders() {
 
   const [isLoading, setLoading] = useState(true);
-  const [orders, setOrders] = useState()
+  const [orders, setOrders] = useState();
 
   useEffect(() => {
     axios.get('/api/admin/orders')
       .then((res) => {
-        setOrders(res.data.orders)
-        setLoading(false)
+        console.log(res.data.data.rows);
+        setOrders(res.data.data.rows);
+        setLoading(false);
       });
   }, []);
 
   if (isLoading) {
-    return <div> LOADING </div>
+    return <div> LOADING </div>;
   }
 
   const displayOrders = orders.map((order) => {
 
     return (
-      <AdminOrderView
-        key={order.orderid}
-        id={order.orderid}
-        table={order.table}
-        customer={order.customer}
-        item={order.item}
-        itemPrice ={order.itemprice}
-        price={order.order_total_cents}
-      />
+      <>
+        <div class="admin-orders">
+          <div class="admin-order">
+          <div class="order-info">
+            <h3>{order.customer_name}</h3>
+            <h3>{order.id}</h3>
+          </div>
+          <AdminOrderView
+            id={order.id}
+          />
+            <div>
+          Total: {order.order_total_cents}
+            </div>
+          <div class="admin-order-options">
+            <form><button type="submit">Mark Paid</button></form>
+            <form><button type="submit">Set to In Progress</button></form>
+            <form><button type="submit">View</button></form>
+          </div>
+          </div>
+        </div>
+      </>
     );
   });
 
   return (
-    <div class="admin-orders">
-      {displayOrders}
-    </div>
-  )
+    <>
+    { displayOrders }
+    </>
+  );
 }
 
 

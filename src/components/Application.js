@@ -4,9 +4,10 @@ import "components/Application.scss";
 
 import AdminOrders from "pages/AdminOrders";
 import AdminPortal from "pages/AdminPortal";
+import AdminMenu from "pages/AdminMenu";
+import AdminForm from "pages/AdminForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserHome from "pages/UserHome";
-import MenuItem from "./MenuItem";
 import UserCart from "pages/UserCart";
 import UserMenuView from "pages/UserMenuView";
 import { Context, UserContext } from '../Context/index';
@@ -96,17 +97,18 @@ export default function Application() {
         <NavLink className="btn" activeClassName="active" to="/cart">
           Cart ({cartItemCount > 0 ? cartItemCount : 0})
         </NavLink>
-        <Routes>
-          <Route path="/admin" element={<AdminPortal />}></Route>
-          <Route path="/" element={<UserHome />}></Route>
-          <Route path="/user/menu" element={<UserMenuView />}></Route>
-          <Route path="/menu" element={<MenuItem />}></Route>
-          <Route path="admin/orders" element={<AdminOrders />}></Route>
-          <Route path="user/cart" element={<UserCart />}></Route>
-          <Route path="/cart" element={<CartView />}></Route>
-        </Routes>
+      <Routes>
+        <Route path="/admin" element={<AdminPortal />}></Route>
+        <Route path="/" element={<UserHome />}></Route>
+        <Route path="/user/menu" element={<UserMenuView />}></Route>
+        <Route path="/admin/menu" element={<AdminMenu />}></Route>
+        <Route path="admin/orders" element={<AdminOrders />}></Route>
+        <Route path="admin/form" element={<AdminForm />}></Route>
+        <Route path="user/cart" element={<UserCart />}></Route>
+        <Route path="/cart" element={<CartView />}></Route>
+      </Routes>
       </BrowserRouter>
       </UserContext.Provider>
     </Context.Provider>
   );
-}
+  }
