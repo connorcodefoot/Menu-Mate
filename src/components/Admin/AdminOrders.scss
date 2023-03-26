@@ -4,7 +4,7 @@ body {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-body::before {
+.admin-background::before {
   content: "";
   position: fixed;
   top: 0;
