@@ -4,9 +4,9 @@ import 'components/Admin/AdminNav.scss'
 export default function Navbar() {
   return (
     <nav class='admin-nav'>
-      <div>User</div>
+      <div><h6>Logged in as: ADMIN</h6></div>
 
-      <div><h1> Menu Mate</h1></div>
+      <div><h1> ORDERS FOR *RESTAURANT* </h1></div>
       <div class="admin-nav-buttons">
         <form action="/admin/orders">      
         <button class="admin-nav-button"> Menus </button>
