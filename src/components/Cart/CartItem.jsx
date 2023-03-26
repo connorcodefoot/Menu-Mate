@@ -97,7 +97,7 @@ const CartItem = (props) => {
                       -{' '}
                     </button>
                     <span>
-                      <h4>{item.count}</h4>
+                      <h4 className='count'>{item.count}</h4>
                     </span>
                     <button onClick={() => increase(item)}>
                       {' '}
