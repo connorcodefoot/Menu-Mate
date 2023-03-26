@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserHome from "pages/UserHome";
 import UserCart from "pages/UserCart";
 import UserMenuView from "pages/UserMenuView";
-import { Context, UserContext } from '../Context/index';
+import { Context, UserContext, useContext } from '../Context/index';
 import { useState } from "react";
 import CartView from "pages/CartView";
 import { data } from '../data';
@@ -23,11 +23,9 @@ export default function Application() {
     data: data,
     cart: [],
   });
+  const [user, setUser ] = useState('')
 
-  const [user, setUser] = useState(null)
-
-
-  const addToCart = (item) => {
+  const addToCart = (item, note) => {
     setState({
       ...state,
       cart: state.cart.find((cartItem) => cartItem.id === item.id)
@@ -36,7 +34,7 @@ export default function Application() {
             ? { ...cartItem, count: cartItem.count + 1 }
             : cartItem
         )
-        : [...state.cart, { ...item, count: 1 }],
+        : [...state.cart, { ...item, count: 1, note }],
     });
   };
 
@@ -56,11 +54,12 @@ export default function Application() {
       ...state,
       cart: state.cart.map((cartItem) =>
         cartItem.id === item.id
-          ? { ...cartItem, count: cartItem.count > 1 ? cartItem.count - 1 : 1 }
+          ? { ...cartItem, count: cartItem.count - 1 }
           : cartItem
       ),
     });
   };
+  
 
   const removeItem = (id) => {
     setState({
@@ -68,11 +67,6 @@ export default function Application() {
       cart: state.cart.filter((cartItem) => cartItem.id !== id),
     });
   };
-
-  const cartItemCount = state.cart.reduce(
-    (acc, data) => (acc += data.count),
-    0
-  );
 
   const cartTotal = () => {
 
@@ -94,19 +88,16 @@ export default function Application() {
       >
 
       <BrowserRouter>
-        <NavLink className="btn" activeClassName="active" to="/cart">
-          Cart ({cartItemCount > 0 ? cartItemCount : 0})
-        </NavLink>
-      <Routes>
-        <Route path="/admin" element={<AdminPortal />}></Route>
-        <Route path="/" element={<UserHome />}></Route>
-        <Route path="/user/menu" element={<UserMenuView />}></Route>
-        <Route path="/admin/menu" element={<AdminMenu />}></Route>
-        <Route path="admin/orders" element={<AdminOrders />}></Route>
-        <Route path="admin/form" element={<AdminForm />}></Route>
-        <Route path="user/cart" element={<UserCart />}></Route>
-        <Route path="/cart" element={<CartView />}></Route>
-      </Routes>
+        <Routes>
+          <Route path="/admin" element={<AdminPortal />}></Route>
+          <Route path="/" element={<UserHome />}></Route>
+          <Route path="/user/menu" element={<UserMenuView />}></Route>
+          <Route path="/admin/menu" element={<AdminMenu />}></Route>
+          <Route path="admin/orders" element={<AdminOrders />}></Route>
+          <Route path="admin/form" element={<AdminForm />}></Route>
+          <Route path="user/cart" element={<UserCart />}></Route>
+          <Route path="/cart" element={<CartView />}></Route>
+        </Routes>
       </BrowserRouter>
       </UserContext.Provider>
     </Context.Provider>

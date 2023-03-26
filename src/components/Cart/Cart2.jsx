@@ -2,6 +2,9 @@ import React from 'react';
 import { Context, UserContext, useContext } from 'Context/index';
 import CartItem from './CartItem';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import 'components/Cart/UserOrder.scss';
 // import UserOrder from './UserOrder';
 import { useState } from 'react';
 
@@ -73,10 +76,3 @@ const Cart2 = () => {
 
 
 export default Cart2;
-
-
-        
-// , null, { params: {
-//   order_id: data.rows[0].id,
-//   item_id: state.cart[0].id
-// }})

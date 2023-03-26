@@ -17,6 +17,8 @@ function UserInput() {
     });
   };
 
+  console.log(user)
+
   const navigate = useNavigate()
 
   const handleSubmit = (event) => {
@@ -52,6 +54,7 @@ function UserInput() {
                   name="name"
                   placeholder="Name"
                   onChange={handleChange} required
+                  className="name-field"
                 />
               </div>
 
@@ -62,6 +65,7 @@ function UserInput() {
                   name="table"
                   placeholder="Table Number"
                   onChange={handleChange} required
+                  className="table-field"
                 />
               </div>
 
@@ -72,15 +76,17 @@ function UserInput() {
                   name="phone"
                   placeholder="Phone Number"
                   onChange={handleChange} required
+                  className="ph-field"
                 />
               </div>
 
               <div>
                 <button          
                   type="submit"
-                  class="btn btn-primary btn-block btn-lg">
-                  Continue to Menu
-                </button>
+                  class="btn btn-primary btn-block btn-lg"
+                  value="Continue to Menu"
+                  className="menu-btn"
+                />
               </div>
             </form>
           </div>

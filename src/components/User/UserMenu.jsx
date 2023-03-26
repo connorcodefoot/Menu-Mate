@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import 'components/User/UserMenu.scss';
 import { Context, UserContext, useContext } from '../../Context/index';
+import { Link } from "react-router-dom";
+
 
 
 export default function UserMenu() {
@@ -13,11 +15,17 @@ export default function UserMenu() {
   // SET STATES
   const [isLoading, setLoading] = useState(true);
   const [menus, setMenus] = useState();
-
+  const [open, setOpen] = useState(false);
   const { state } = useContext(Context);
+  const { user, setUser } = useContext(UserContext)
 
-  const { user } = useContext(UserContext)
-  console.log('menu logging user:', user)
+  console.log(user)
+
+  // Add cart to view
+  const cartItemCount = state.cart.reduce(
+    (acc, data) => (acc += data.count),
+    0
+  );
 
   // LOAD DEFAULT PAGE
   useEffect(() => {
@@ -43,6 +51,7 @@ export default function UserMenu() {
         id={menu.id}
         title={menu.title}
         state={state.cart}
+        href={`#${menu.title.replace(/\s+/g, '-').toLowerCase()}`}
       />
     );
   });
@@ -50,7 +59,7 @@ export default function UserMenu() {
   const displayMenus = menus.map((menu) => {
     return (
       <>
-        <h1 class="menu-categ">{menu.title}</h1>
+        <h1 id={menu.title.replace(/\s+/g, '-').toLowerCase()} class="menu-categ">{menu.title}</h1>
         <ul>
           <UserMenuItem
             menuID={menu.id}
@@ -65,10 +74,20 @@ export default function UserMenu() {
 
   return (
     <>
-      <div class="menu-btns">
-        <ul class="menu-list">{displayMenuButtons}</ul>
+      <div className="nav">
+        <div class="menu-btns">
+          <ul class="menu-list">{displayMenuButtons}</ul>
+        </div>
       </div>
       <ul>{displayMenus}</ul>
+      {cartItemCount > 0 && (
+          <Link className="btn-cart" to="/cart">
+            <div className="cart-icon">
+              <div className="cart-count">{cartItemCount}</div>
+              <div className="cart-text">Cart</div>
+            </div>
+          </Link>
+        )}
     </>
   );
 };

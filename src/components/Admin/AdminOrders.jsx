@@ -19,8 +19,18 @@ export default function AdminOrders() {
       });
   }, []);
 
+  useEffect(() => {
+    // Add the home-background class to the body element (this is being used for background color on home page without affecting other pages)
+    document.body.classList.add("admin-background");
+
+    // Remove the home-background class when component unmounts
+    return () => {
+      document.body.classList.remove("admin-background");
+    };
+  }, []);
+
   if (isLoading) {
-    return <div> LOADING </div>;
+    return <div class="admin-loading"> LOADING </div>
   }
 
   const displayOrders = orders.map((order) => {
