@@ -68,11 +68,6 @@ export default function Application() {
     });
   };
 
-  const cartItemCount = state.cart.reduce(
-    (acc, data) => (acc += data.count),
-    0
-  );
-
   const cartTotal = () => {
 
     let total = 0;
@@ -90,19 +85,16 @@ export default function Application() {
       value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal }}
     >
       <BrowserRouter>
-        <NavLink className="btn" activeClassName="active" to="/cart">
-          Cart ({cartItemCount > 0 ? cartItemCount : 0})
-        </NavLink>
-      <Routes>
-        <Route path="/admin" element={<AdminPortal />}></Route>
-        <Route path="/" element={<UserHome />}></Route>
-        <Route path="/user/menu" element={<UserMenu />}></Route>
-        <Route path="/admin/menu" element={<AdminMenu />}></Route>
-        <Route path="admin/orders" element={<AdminOrders />}></Route>
-        <Route path="admin/form" element={<AdminForm />}></Route>
-        <Route path="user/cart" element={<UserCart />}></Route>
-        <Route path="/cart" element={<CartView />}></Route>
-      </Routes>
+        <Routes>
+          <Route path="/admin" element={<AdminPortal />}></Route>
+          <Route path="/" element={<UserHome />}></Route>
+          <Route path="/user/menu" element={<UserMenu />}></Route>
+          <Route path="/admin/menu" element={<AdminMenu />}></Route>
+          <Route path="admin/orders" element={<AdminOrders />}></Route>
+          <Route path="admin/form" element={<AdminForm />}></Route>
+          <Route path="user/cart" element={<UserCart />}></Route>
+          <Route path="/cart" element={<CartView />}></Route>
+        </Routes>
       </BrowserRouter>
     </Context.Provider>
   );
