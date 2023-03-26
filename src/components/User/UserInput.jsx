@@ -84,9 +84,10 @@ function UserInput() {
                 <button          
                   type="submit"
                   class="btn btn-primary btn-block btn-lg"
-                  value="Continue to Menu"
                   className="menu-btn"
-                />
+                >
+                Go to menu
+                </button>
               </div>
             </form>
           </div>

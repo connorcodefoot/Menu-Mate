@@ -23,6 +23,7 @@ export default function Application() {
     data: data,
     cart: [],
   });
+  
   const [user, setUser ] = useState('')
 
   const addToCart = (item, note) => {
