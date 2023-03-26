@@ -47,6 +47,7 @@ function UserInput() {
                   placeholder="Name"
                   value={state.name}
                   onChange={handleChange} required
+                  className="name-field"
                 />
               </div>
 
@@ -58,6 +59,7 @@ function UserInput() {
                   placeholder="Table Number"
                   value={state.table}
                   onChange={handleChange} required
+                  className="table-field"
                 />
               </div>
 
@@ -69,6 +71,7 @@ function UserInput() {
                   placeholder="Phone Number"
                   value={state.phone}
                   onChange={handleChange} required
+                  className="ph-field"
                 />
               </div>
 
@@ -80,6 +83,7 @@ function UserInput() {
                   onClick={() => {
                     window.location.href = '/user/menu';
                   }}
+                  className="menu-btn"
                 />
               </div>
             </form>
