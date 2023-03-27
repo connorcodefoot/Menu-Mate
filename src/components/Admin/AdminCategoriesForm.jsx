@@ -1,9 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
-import { Context, useContext } from '../../Context/index';
 
 import 'components/User/UserMenu.scss';
 
@@ -15,11 +14,27 @@ export default function AdminCategoriesForm(props) {
 
   const reset = () => {
     setTitle("");
-  }
+  };
 
   const cancel = () => {
     reset();
-    navigate('/admin/categories')
+    navigate('/admin/categories');
+  };
+
+  function saveMenu(title) {
+  
+    return new Promise((resolve, reject) => {
+      axios.post(`/api/admin/new-menu`, null, { params: { title } } )
+        .then((res) => {
+          console.log(res)
+          resolve(true);
+          navigate('/admin/categories');
+        })
+        .catch(error => {
+          reject(true);
+          console.log(error);
+        });
+    });
   }
 
   const validate = () => {
@@ -29,10 +44,10 @@ export default function AdminCategoriesForm(props) {
     }
 
     setError("");
-    props.onSave(title);
-  }
+    saveMenu(title);
+  };
 
-  return(
+  return (
     <main className="user-menu-item">
       <section className="item__card-left">
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
