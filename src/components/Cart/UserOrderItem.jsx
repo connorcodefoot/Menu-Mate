@@ -7,12 +7,8 @@ export default function UserMenuItem(props) {
     <>
       <div className="list-item">
         <div className="list-item-info">
-          <h3 className="title">{props.title}</h3>
-          <p>{props.details}</p>
-          <span className="info">
             <span className="price">
-              <b>Price: </b> ${props.price.toFixed(2) / 100}
-            </span>
+            <h5>{props.title}</h5>
           </span>
         </div>
         <div className='stuff'>
