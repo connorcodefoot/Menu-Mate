@@ -1,5 +1,5 @@
 import React from 'react';
-import { Context, UserContext, useContext } from 'Context/index';
+import { Context, UserContext, useContext, OrderContext } from 'Context/index';
 import CartItem from './CartItem';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -13,44 +13,60 @@ import UserOrder from './UserOrder.jsx';
 
 const Cart2 = () => {
 
-  // State controller
-  const { state, cartTotal } = useContext(Context);
-  const [orderDetailsView, showOrderDetails] = useState(false)
-  const [orderID, setOrderID] = useState(1)
-  const total = cartTotal() / 100;
-  const { user } = useContext(UserContext);
-  // axios.post('/api/stripe/create-checkout-session')
-
-
-  // const stripeCheckout = function () {
-  //   axios.get('/api/stripe/checkout-url')
-  //   .then((res) => {
-  //   window.location.href = res.data.stripeSession.url
-  //   })
-  // }
+    // State controller
+    const { state, cartTotal, emptyCart } = useContext(Context);
+    const { order, setOrder } = useContext(OrderContext)
+    const [showOrder, showOrderController] = useState(false)
+    const total = cartTotal() / 100;
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate()
 
   // Create an Order and get back an ID
-  
     const submitOrder = () => {
 
-    const order = {
+    const newOrder = {
       customer_name: user.name,
       table_number: user.table,
       order_total_cents: total
     };
 
-    axios.post('/api/user/new-order', null, { params: order })
+    axios.post('/api/user/new-order', null, { params: newOrder })
       .then(res => {
-        setOrderID(res.data.rows[0].id)
+        setOrder({
+        ...order,
+          id: res.data.rows[0].id,
+          total
+        })
       })
       .then(() => {
-        showOrderDetails(true)
+        addItems()
+      })
+      .then(()=> {
+        showOrderController(true)
+      })
+      .catch((err) => { return 'error'; });
+    };
+
+    const addItems = () => {
+
+      state.cart.forEach((item) => {
+      axios.post('/api/user/new-order-item', null, {
+        params: {
+          itemID: item.id,
+          orderID: order.id
+        }
+      })
+      .then(() => {
+        emptyCart()
       })
         .catch((err) => { return 'error'; });
-  };
+      });
+    };
 
+  console.log(order)
   return (
     <>
+    {!showOrder && (<>
       <div className="cart">
         {state.cart.map((item) => (
           <CartItem
@@ -58,14 +74,29 @@ const Cart2 = () => {
             item={item}
           />
         ))}
-        {orderDetailsView && <UserOrder orderID={orderID} />}
-
-        Cart Total = ${total}
+        <>Cart Total = ${total}</>
         <button onClick={submitOrder}>
           Submit Order
         </button>
-        <p>Don't worry, you  can modify your order in the next step and pay whenever you are ready</p>
+        <button onClick={() => {navigate('/user/menu')}}>Add to Order</button>
       </div>
+    </>)}
+    {showOrder && (<>
+    <div className="cart">
+        {state.cart.map((item) => (
+          <CartItem
+            key={item.id}
+            item={item}
+          />
+        ))}
+        <UserOrder orderID={order.id} />
+          Order Total = ${total}
+        <button onClick={addItems}>
+          Add Items to Order
+        </button>
+        <button onClick={() => {navigate('/user/menu')}}>Add to Order</button>
+      </div>
+      </>)}
     </>
   );
 };

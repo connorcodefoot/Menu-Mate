@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 function UserInput() {
 
   const { user, setUser } = useContext(UserContext)
+  const navigate = useNavigate()
 
   const handleChange = (event) => {
     setUser({
@@ -16,10 +17,6 @@ function UserInput() {
       [event.target.name]: event.target.value
     });
   };
-
-  console.log(user)
-
-  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
 

@@ -5,22 +5,24 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import 'components/User/UserMenu.scss';
-import { Context, UserContext, useContext } from '../../Context/index';
+import { Context, UserContext, OrderContext, useContext } from '../../Context/index';
 import { Link } from "react-router-dom";
 
 
 
 export default function UserMenu() {
 
-  // SET STATES
+  // SET STATES / CONTEXTS
   const [isLoading, setLoading] = useState(true);
   const [menus, setMenus] = useState();
   const [open, setOpen] = useState(false);
-
   const { state } = useContext(Context);
-
   const { user } = useContext(UserContext)
-  console.log(user)
+  const { order } = useContext(OrderContext)
+
+  console.log('user:', user)
+  console.log('order:', order)
+  console.log('cart',state.cart )
 
   // Add cart to view
   const cartItemCount = state.cart.reduce(
