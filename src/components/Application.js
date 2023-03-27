@@ -9,8 +9,8 @@ import AdminForm from "pages/AdminForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserHome from "pages/UserHome";
 import UserCart from "pages/UserCart";
-import UserMenu from "pages/UserMenu";
-import { Context } from '../Context/index';
+import UserMenuView from "pages/UserMenuView";
+import { Context, UserContext, useContext } from '../Context/index';
 import { useState } from "react";
 import CartView from "pages/CartView";
 import { data } from '../data';
@@ -23,6 +23,8 @@ export default function Application() {
     data: data,
     cart: [],
   });
+  
+  const [user, setUser ] = useState('')
 
   const addToCart = (item, note) => {
     setState({
@@ -35,7 +37,6 @@ export default function Application() {
         )
         : [...state.cart, { ...item, count: 1, note }],
     });
-    console.log(state.cart);
   };
 
   const increase = (item) => {
@@ -80,15 +81,25 @@ export default function Application() {
 
   };
 
+  const emptyCart = () => {
+    setState({
+      ...state,
+      cart: []
+    })
+  }
+
   return (
     <Context.Provider
-      value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal }}
+      value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal, emptyCart}}
     >
+      <UserContext.Provider value={{user, setUser}}
+      >
+
       <BrowserRouter>
         <Routes>
           <Route path="/admin" element={<AdminPortal />}></Route>
           <Route path="/" element={<UserHome />}></Route>
-          <Route path="/user/menu" element={<UserMenu />}></Route>
+          <Route path="/user/menu" element={<UserMenuView />}></Route>
           <Route path="/admin/menu" element={<AdminMenu />}></Route>
           <Route path="admin/orders" element={<AdminOrders />}></Route>
           <Route path="admin/form" element={<AdminForm />}></Route>
@@ -96,6 +107,7 @@ export default function Application() {
           <Route path="/cart" element={<CartView />}></Route>
         </Routes>
       </BrowserRouter>
+      </UserContext.Provider>
     </Context.Provider>
   );
-}
+  }

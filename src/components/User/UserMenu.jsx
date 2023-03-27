@@ -5,8 +5,9 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import 'components/User/UserMenu.scss';
-import { Context, useContext } from '../../Context/index';
+import { Context, UserContext, useContext } from '../../Context/index';
 import { Link } from "react-router-dom";
+
 
 
 export default function UserMenu() {
@@ -18,6 +19,10 @@ export default function UserMenu() {
 
   const { state } = useContext(Context);
 
+  const { user } = useContext(UserContext)
+  console.log(user)
+
+  // Add cart to view
   const cartItemCount = state.cart.reduce(
     (acc, data) => (acc += data.count),
     0

@@ -12,7 +12,6 @@ function Cart() {
         setItems(res.data.items);
       })
       .catch((error) => {
-        console.log(error);
       });
   }, []);
 
