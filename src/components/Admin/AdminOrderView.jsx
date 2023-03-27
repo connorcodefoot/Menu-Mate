@@ -30,8 +30,8 @@ export default function AdminOrderView(props) {
       return (
         <>
           <div class="order-items">
-            <h5>{item.title}</h5>
-            <h5>${item.price_cents / 100}</h5>
+            <p>{item.title}</p>
+            <p>${item.price_cents / 100}</p>
           </div>
         </>
       );
