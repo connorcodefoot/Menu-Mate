@@ -4,7 +4,7 @@ body {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-body::before {
+.admin-background::before {
   content: "";
   position: fixed;
   top: 0;
@@ -19,11 +19,10 @@ body::before {
 }
 
 
-.admin-orders {
+.all-orders {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
 }
 
 .admin-order {
@@ -37,6 +36,9 @@ body::before {
   height: 14em;
 }
 
+.my-modal-title {
+  font-family: 'Noto Sans JP', sans-serif;
+}
 .order-info {
   display: flex;
   justify-content: space-between;
@@ -46,8 +48,12 @@ body::before {
 
 .order-items {
   display: flex;
-  justify-content: space-evenly;
-  margin: 1rem;
+  justify-content: space-between;
+}
+
+.order-total {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .admin-order-options {
