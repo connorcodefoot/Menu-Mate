@@ -10,21 +10,25 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserHome from "pages/UserHome";
 import UserCart from "pages/UserCart";
 import UserMenuView from "pages/UserMenuView";
-import { Context, UserContext, useContext } from '../Context/index';
+import { Context, UserContext, OrderContext, useContext } from '../Context/index';
 import { useState } from "react";
 import CartView from "pages/CartView";
-import { data } from '../data';
 import { NavLink } from "react-router-dom";
+import UserThankyou from "./User/UserThankyou";
 
 
 export default function Application() {
 
   const [state, setState] = useState({
-    data: data,
     cart: [],
   });
-  
-  const [user, setUser ] = useState('')
+
+  const [user, setUser] = useState('');
+  const [order, setOrder] = useState({
+    id: 0,
+    total: 0,
+    orderItems: []
+  });
 
   const addToCart = (item, note) => {
     setState({
@@ -60,7 +64,7 @@ export default function Application() {
       ),
     });
   };
-  
+
 
   const removeItem = (id) => {
     setState({
@@ -85,29 +89,29 @@ export default function Application() {
     setState({
       ...state,
       cart: []
-    })
-  }
+    });
+  };
 
   return (
     <Context.Provider
-      value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal, emptyCart}}
-    >
-      <UserContext.Provider value={{user, setUser}}
-      >
-
-      <BrowserRouter>
-        <Routes>
-          <Route path="/admin" element={<AdminPortal />}></Route>
-          <Route path="/" element={<UserHome />}></Route>
-          <Route path="/user/menu" element={<UserMenuView />}></Route>
-          <Route path="/admin/menu" element={<AdminMenu />}></Route>
-          <Route path="admin/orders" element={<AdminOrders />}></Route>
-          <Route path="admin/form" element={<AdminForm />}></Route>
-          <Route path="user/cart" element={<UserCart />}></Route>
-          <Route path="/cart" element={<CartView />}></Route>
-        </Routes>
-      </BrowserRouter>
+      value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal, emptyCart }}>
+      <UserContext.Provider value={{ user, setUser }}>
+        <OrderContext.Provider value={{ order, setOrder }}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/admin" element={<AdminPortal />}></Route>
+              <Route path="/" element={<UserHome />}></Route>
+              <Route path="/user/menu" element={<UserMenuView />}></Route>
+              <Route path="/admin/menu" element={<AdminMenu />}></Route>
+              <Route path="admin/orders" element={<AdminOrders />}></Route>
+              <Route path="admin/form" element={<AdminForm />}></Route>
+              <Route path="user/cart" element={<UserCart />}></Route>
+              <Route path="/cart" element={<CartView />}></Route>
+              <Route path="/user/thank-you" element={<UserThankyou />}></Route>
+            </Routes>
+          </BrowserRouter>
+        </OrderContext.Provider>
       </UserContext.Provider>
     </Context.Provider>
   );
-  }
+}
