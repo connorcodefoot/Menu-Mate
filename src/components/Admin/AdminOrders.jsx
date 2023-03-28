@@ -14,7 +14,6 @@ export default function AdminOrders() {
 
   useEffect(() => {
     axios.get("/api/admin/orders").then((res) => {
-      console.log(res.data.data.rows);
       setOrders(res.data.data.rows);
       setLoading(false);
     });
@@ -42,30 +41,37 @@ export default function AdminOrders() {
     setShowModal(false);
   };
 
+
   const displayOrders = orders.map((order) => {
     return (
       <>
         <div class="admin-orders">
           <div className="admin-order" key={order.id}>
             <div className="order-info">
-              <h4 className="order">Order #{order.id}</h4>
+              <h5 className="order">Order #{order.id}</h5>
               <div className="customer-info">
-                <h5 className="customer">Customer:</h5>
                 <h5>{order.customer_name}</h5>
               </div>
             </div>
+            <div className="order-info">
+              <p className="order">Table #{order.table_number}</p>
+              <div className="customer-info">
+                <p>{order.paid ? <>PAID</> : <>UNPAID</>}</p>
+              </div>
+            </div>
+            <div class="order-status">{order.order_status}</div>
             <div className="admin-order-options">
               <form>
                 <button className="view" type="button" onClick={() => handleViewOrder(order)}>
                   View Order Details
                 </button>
               </form>
-              <form>
+              {/* <form>
                 <button className="set" type="submit">Set to In Progress</button>
               </form>
               <form>
                 <button className="paid" type="submit">Mark Paid</button>
-              </form>
+              </form> */}
             </div>
           </div>
         </div>
@@ -79,7 +85,7 @@ export default function AdminOrders() {
         {displayOrders}
       </div>
       {selectedOrder && (
-        <Modal
+        <Modal className="modal-container"
           show={showModal}
           onHide={handleCloseModal}
           centered
@@ -89,7 +95,7 @@ export default function AdminOrders() {
           </Modal.Header>
           <Modal.Body className="my-modal-body">
             <AdminOrderView id={selectedOrder.id} />
-            <p className="order-total">Total: {selectedOrder.order_total_cents}</p>
+            <p className="order-total">Total: ${selectedOrder.order_total_cents}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseModal}>
