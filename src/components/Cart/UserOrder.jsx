@@ -39,7 +39,7 @@ export default function UserOrder(props) {
       setLoading(false)
       })
     .catch((err) => { return 'error'; });
-  }, [user.orderID, state.cart]);
+  }, [props.orderID, state.cart]);
 
 
   const orderPaid = () => {
