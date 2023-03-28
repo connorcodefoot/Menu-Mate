@@ -24,9 +24,10 @@ export default function Show(props) {
 
   const navigate = useNavigate();
 
-  function saveItem(id, title, details, price, picture) {
+  function saveItem(id, menuID, title, details, price, picture) {
     const newItem = {
       id,
+      menuID,
       title,
       details,
       price,
@@ -49,9 +50,10 @@ export default function Show(props) {
     });
   }
 
-  const redirect = (id, title, details, price, picture) => {
+  const redirect = (id, menuID, title, details, price, picture) => {
     navigate('/admin/form', {state: {
       id,
+      menuID,
       title,
       details,
       price, 
@@ -81,6 +83,7 @@ export default function Show(props) {
       <>
       <ShowItem
         id={item.id}
+        menuID={props.menuID}
         title={item.title}
         details={item.details}
         price={item.price_cents}

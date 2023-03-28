@@ -1,6 +1,4 @@
 import React from "react";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import 'components/User/UserMenu.scss';
 
 export default function ShowItem(props) {
@@ -21,7 +19,7 @@ export default function ShowItem(props) {
           <button
             className="appointment__actions-button"
             alt="Edit"
-            onClick={() => props.onEdit(props.id, props.title, props.details, props.price, props.picture)}
+            onClick={() => props.onEdit(props.id, props.menuID, props.title, props.details, props.price, props.picture)}
         
           >Edit</button>
           <button
