@@ -1,51 +1,108 @@
-import React from 'react';
-import { Context, useContext } from 'Context/index';
+import React, { useEffect } from 'react';
+import { Context, UserContext, useContext } from 'Context/index';
 import CartItem from './CartItem';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import 'components/Cart/UserOrder.scss';
+// import UserOrder from './UserOrder';
+import { useState } from 'react';
+// import UserOrderItem from './UserOrderItem';
+import UserOrder from './UserOrder.jsx';
+import { addItemToDB, getOrderTotal } from 'helpers/apiHelper';
+
 
 const Cart2 = () => {
 
-  const { state, cartTotal } = useContext(Context);
-
+  // State controller
+  const { state, cartTotal, emptyCart } = useContext(Context);
+  const [showOrder, showOrderController] = useState(false);
   const total = cartTotal() / 100;
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();  
 
-  axios.post('/api/stripe/create-checkout-session');
+  // Create an Order and get back an ID
+  const submitOrder = () => {
 
-  let navigate = useNavigate();
-  const stripeCheckout = function() {
-    axios.get('/api/stripe/checkout-url')
-      .then((res) => {
-        window.location.href = res.data.stripeSession.url;
-      });
+    const newOrder = {
+      customer_name: user.name,
+      table_number: user.table,
+      order_total_cents: total
+    };
+
+    axios.post('/api/user/new-order', null, { params: newOrder })
+      .then(res => {
+        console.log(res)
+        addItems(res.data.rows[0].id)
+      })
+      .catch((err) => { return 'error'; });
+    };
+
+  // Add items to order
+  const addItems = (orderID) => {
+
+    state.cart.forEach((item) => {
+      addItemToDB(item.id, orderID);
+    });
+
+    // Remove items from cart now that they are added to an order
+    emptyCart();
+
+    // Set orderID on user
+    if (user.orderID === 0) {
+    setUser({
+      ...user,
+      orderID: orderID
+    })
+    }
+  };
+
+  const addMoreItems = () => {
+
+    state.cart.forEach((item) => {
+      addItemToDB(item.id, user.orderID);
+    });
+
+    // Remove items from cart now that they are added to an order
+    emptyCart();
   };
 
   return (
     <>
-      <nav>
-        <h1 className="rest-name">*RESTAURANT NAME*</h1>
-      </nav>
-      <h2 className="user-order">Your Order</h2>
-      <Link to="/user/menu">
-        <button className="btn-add">+ Add Items</button>
-      </Link>
-      <div className="order">
-        {state.cart.map((item) => (
-          <CartItem
-            key={item.id}
-            item={item}
-          />
-        ))}
-        <h4 className='order-total'><b>Order Total:</b> ${total}</h4>
-        <div className="btn-options">
-          <button className="place"><b>Place Order</b></button>
-          <button className="pay" onClick={stripeCheckout}><b>Pay Now</b></button>
+      {(user.orderID === 0) && (<>
+        <div className="cart">
+          {state.cart.map((item) => (
+            <CartItem
+              key={item.id}
+              item={item}
+            />
+          ))}
+          <>Cart Total = ${total}</>
+          <button onClick={submitOrder}>
+            Submit Order
+          </button>
+          <button onClick={() => { navigate('/user/menu'); }}>Add to Order</button>
         </div>
-      </div>
+      </>)}
+      {(user.orderID > 0) && (<>
+        <div className="cart">
+          {state.cart.map((item) => (
+            <CartItem
+              key={item.id}
+              item={item}
+            />
+          ))}
+          <UserOrder orderID={user.orderID}/>
+          Order Total = Working on it
+          <button onClick={addMoreItems}>
+            Add Items to Existing Order
+          </button>
+          <button onClick={() => { navigate('/user/menu'); }}>View Menu to add more</button>
+        </div>
+      </>)}
     </>
   );
 };
+
 
 export default Cart2;
