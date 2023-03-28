@@ -6,6 +6,8 @@ import UserOrderItem from './UserOrderItem';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import 'components/Cart/UserOrder.scss';
+
 
 // Stripe Form Requirements
 import CheckoutForm from '../User/CheckoutForm';
@@ -29,16 +31,16 @@ export default function UserOrder(props) {
   const { user } = useContext(UserContext);
   const [orderItems, setItems] = useState();
 
-  console.log('user', user)
+  console.log('user', user);
 
   useEffect(() => {
-    console.log('useEffectRuns')
+    console.log('useEffectRuns');
     axios.get(`/api/user/orders/${user.orderID}`)
-    .then((res) => {
-      setItems(res.data.items)
-      setLoading(false)
+      .then((res) => {
+        setItems(res.data.items);
+        setLoading(false);
       })
-    .catch((err) => { return 'error'; });
+      .catch((err) => { return 'error'; });
   }, [props.orderID, state.cart]);
 
 
@@ -72,15 +74,18 @@ export default function UserOrder(props) {
   return (
     <>
       <div>
-        <h3> Submitted Items</h3>
-        <p>Our team is preparing the following:</p>
-        {displayOrderItems}
+        <h3 className="prev-order"> Submitted Items</h3>
+        <p className="prev-order-msg"> Our team is preparing the following:</p>
+        <div className="prev-item">
+          {displayOrderItems}
+        </div>
       </div>
+      <h4 className='order-total-end'><b>Order Total:</b> Working on it</h4>
       <div>
-        {!checkout && <button onClick={() => { showCheckout(true); }}>Settle Up</button>}
+        {!checkout && <button className="settle" onClick={() => { showCheckout(true); }}>Settle Up</button>}
 
       </div>
-      <div>
+      <div className="payment">
         {checkout && (
           <Elements stripe={stripePromise}>
             <CheckoutForm

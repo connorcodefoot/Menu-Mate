@@ -42,7 +42,7 @@ export default function UserMenuItem(props) {
             <div className="right-page">
               <h3 class="menu-price">{item.price_cents / 100}</h3>
               <button className="add-item" onClick={() => addToCart(item)} >
-                +
+                Add to Order
               </button>
             </div>
             {cart.map((cartItem) =>
