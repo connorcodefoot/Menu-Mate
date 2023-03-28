@@ -73,6 +73,8 @@ export default function Show(props) {
   return (  
   <>
     <button onClick={handleClick}>Add Menu Item</button>
+    <br></br>
+    <br></br>
     {showAddModal && (
         <AddItemModal
           item={{

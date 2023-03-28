@@ -44,28 +44,35 @@ export default function ShowItem(props) {
 
   return (
     <>
-      <div>
-        <div>
-          <img src={picture} />
-          <h1>{title}</h1>
-          {details}
-        </div>
-        <div>
-          <h3>{price / 100}</h3>
-        </div>
-        <section className="item__actions">
-          <button
-            className="appointment__actions-button"
-            alt="Edit"
-            onClick={handleEdit}
-          > Edit
-          </button>
-          <button
-            className="appointment__actions-button"
-            alt="Edit"
-            onClick={handleDelete}
-          > Delete
-          </button>
+      <div class="admin-menu-item">
+        <section class="item__details__left">
+          <div>
+            <img src={picture} />
+          </div>
+          <div class="item__description">
+            <h1>{title}</h1>
+            <div id="item-details">
+              {details}
+            </div>
+          </div>
+        </section>
+        <section class="item__details__right">
+            <h3 id="price">{price / 100}</h3>
+            <div className="item__actions">
+              <button
+                className="appointment__actions-button"
+                alt="Edit"
+                onClick={handleEdit}
+              > Edit
+              </button>
+              <button
+                className="appointment__actions-button"
+                id="delete-button"
+                alt="Edit"
+                onClick={handleDelete}
+              > Delete
+              </button>
+          </div>
         </section>
       </div>
       {showEditItemModal && (

@@ -94,9 +94,9 @@ export default function AdminMenu() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <Button variant="secondary" onClick={handleClick} >
+      <button variant="secondary" id="new-menu-button" onClick={handleClick} >
         New Menu Category
-      </Button>
+      </button>
       {showAddModal && (
         <AddMenuModal
           menu={{
