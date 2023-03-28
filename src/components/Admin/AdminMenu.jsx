@@ -1,5 +1,6 @@
 import React from "react";
 import AdminMenuItem from "./MenuItem/index";
+import AddMenuModal from './AdminAddMenu';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Context, useContext } from '../../Context/index';
@@ -9,9 +10,11 @@ import 'components/User/UserMenu.scss';
 
 export default function AdminMenu() {
   // SET STATES
+  const [showAddModal, setShowAddModal] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [menus, setMenus] = useState();
   const [activeMenuId, setActiveMenuId] = useState(null);
+  const [title, setTitle] = useState("");
 
   const { state } = useContext(Context);
 
@@ -35,6 +38,20 @@ export default function AdminMenu() {
     setActiveMenuId(menuId);
   };
 
+  const handleClick = () => {
+    setShowAddModal(true);
+  };
+
+  const handleAddSave = (addedMenu) => {
+    // save the edited item to backend or state
+    console.log('Added menu:', addedMenu);
+    setTitle(addedMenu.title);
+  };
+
+  const handleAddClose = () => {
+    setShowAddModal(false);
+  };
+
   // RETURN MENU
 
   return (
@@ -53,7 +70,7 @@ export default function AdminMenu() {
                 onClick={() => handleMenuClick(menu.id)}
               />
             </Accordion.Header>
-            <Accordion.Body>   
+            <Accordion.Body>
               <AdminMenuItem menuID={menu.id} />
             </Accordion.Body>
           </Accordion.Item>
@@ -77,6 +94,19 @@ export default function AdminMenu() {
           </Button>
         </Modal.Footer>
       </Modal>
+      <Button variant="secondary" onClick={handleClick} >
+        New Menu Category
+      </Button>
+      {showAddModal && (
+        <AddMenuModal
+          menu={{
+            title
+          }}
+          onSave={handleAddSave}
+          onClose={handleAddClose}
+          onUpdateTitle={setTitle}
+        />
+      )}
     </>
   );
 };
