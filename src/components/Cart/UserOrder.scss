@@ -12,6 +12,7 @@ nav {
 .rest-name {
   padding: 1em;
   text-align: center;
+  margin-bottom: .75em;
 }
 
 .btn-add {
@@ -23,11 +24,19 @@ nav {
   width: 9em;
 }
 
+.btn-add-more {
+  margin-left: 1.25em;
+  background-color: rgb(229, 228, 228);
+  border: none;
+  border-radius: 20px;
+  padding: 7px;
+  width: 15em;
+  margin-bottom: 1em;
+}
+
 .user-order {
   margin-left: 1em;
   font-weight: bold;
-  padding-bottom: .5em;
-  text-decoration: underline;
 }
 
 .info {
@@ -42,6 +51,10 @@ nav {
   padding: 1rem;
   padding-bottom: 2em;
   border-bottom: 2px solid lightgray;
+}
+
+.list-item-info {
+  margin-right: 3.75em;
 }
 
 .list-item-image {
@@ -59,15 +72,44 @@ nav {
   margin-bottom: 1em;
 }
 
-.stuff {
+.prev-list-item {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5em;
+  padding: 1rem;
+  padding-bottom: 2em;
+  border-bottom: 2px solid lightgray;
+  color: darkgray;
+}
+
+.prev-list-item-info {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.prev-total {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
 }
 
+.prev-order {
+  margin-left: 1em;
+  
+}
+
+.prev-order-msg {
+  margin-left: 1.5em;
+}
+
+.item-name {
+  width: 8em;
+}
+
 .subtotal {
   margin-right: 1.1em;
+  margin-left: 50px;
 }
 
 .pos-quantity {
@@ -76,6 +118,8 @@ nav {
   padding-top: 1em;
   padding-bottom: .5em;
   margin-right: .75em;
+  margin-left: 50px;
+  
 }
 
 .no-quantity {
@@ -140,14 +184,19 @@ nav {
   text-decoration: none;
 }
 
-.order-total {
-  margin-top: .75em;
+.order-total-user, .prev-order {
+  margin-top: 1.5em;
   margin-left: 1em;
   margin-bottom: .75em;
 }
 
-.order-total b {
+.order-total-user b, .order-total-end b {
   text-decoration: underline;
+}
+
+.order-total-end {
+  margin-top: 1.5em;
+  margin-left: 1em;
 }
 
 .btn-options {
@@ -160,17 +209,39 @@ nav {
   margin-bottom: 2em;
 }
 
-.place, .pay {
+.place, .settle {
   background: transparent;
   margin-top: 1em;
-  display: flex;
   text-align: center;
   border: none;
   background-color: black;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   padding: 0.75rem 5rem;
   border-radius: 0.25rem;
+  margin-left: 1em;
+  margin-bottom: 2em;
+}
+
+.pay {
+  background: transparent;
+  margin-top: 1em;
+  text-align: center;
+  border: none;
+  background-color: black;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.75rem 5rem;
+  border-radius: 0.25rem;
+  margin-bottom: 2em;
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3em;
+  margin-left: 1em;
+
 }
 
 .place:hover, .pay:hover {
