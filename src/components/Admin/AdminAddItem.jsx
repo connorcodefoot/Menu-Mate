@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { Modal, Form, Button } from 'react-bootstrap';
 
-function EditModal({ item, onSave, onClose }) {
-  const [id, setId] = useState(item.id)
+function AddItemModal({ item, onSave, onClose }) {
   const [menuID, setMenuID] = useState(item.menuID)
   const [title, setTitle] = useState(item.title);
   const [details, setDetails] = useState(item.details);
   const [price, setPrice] = useState(item.price);
   const [picture, setPicture] = useState(item.picture);
 
+
   const handleSave = () => {
     onSave({
       ...item,
-      id: id,
-      menuID: menuID,
       title: title,
       details: details,
       price: price,
@@ -22,16 +20,13 @@ function EditModal({ item, onSave, onClose }) {
     });
 
     return new Promise((resolve, reject) => {
-      axios.put(`/api/admin/edit-item`, null, {
-        params: {
-          id,
-          menuID,
-          title,
-          details,
-          price,
-          picture
-        }
-      })
+      axios.post(`/api/admin/new-item`, null, { params: { 
+        menuID,
+        title, 
+        details, 
+        price, 
+        picture 
+      }})
         .then((res) => {
           resolve(true);
           onClose();
@@ -41,12 +36,13 @@ function EditModal({ item, onSave, onClose }) {
           console.log(error);
         });
     });
+
   };
 
   return (
     <Modal show={true} onHide={onClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Item</Modal.Title>
+        <Modal.Title>Add Menu Item</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -96,4 +92,4 @@ function EditModal({ item, onSave, onClose }) {
   );
 }
 
-export default EditModal;
+export default AddItemModal;

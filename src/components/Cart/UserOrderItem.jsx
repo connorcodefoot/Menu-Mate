@@ -5,15 +5,15 @@ export default function UserMenuItem(props) {
 
   return (
     <>
-      <div className="list-item">
-        <div className="list-item-info">
-            <span className="price">
-            <h5>{props.title}</h5>
-          </span>
+      <div className="prev-list-item">
+        <div className="prev-list-item-info">
+            <h5 className="item-name">{props.title}</h5>
+            {/* <span className="price">
+          </span> */}
         </div>
-        <div className='stuff'>
+        <div className="prev-total">
           <div>
-            <span className='subtotal'>
+            <span className="prev-subtotal">
               <b>Subtotal </b> ${(props.price.toFixed(2)) / 100}
             </span>
           </div>

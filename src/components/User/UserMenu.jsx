@@ -84,7 +84,7 @@ export default function UserMenu() {
           <Link className="btn-cart" to="/cart">
             <div className="cart-icon">
               <div className="cart-count">{cartItemCount}</div>
-              <div className="cart-text">Cart</div>
+              <div className="cart-text">Review Order</div>
             </div>
           </Link>
         )}
