@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Context, UserContext, OrderContext, useContext } from 'Context/index';
+import { Context, UserContext, useContext } from 'Context/index';
 import axios from "axios";
 import UserOrderItem from './UserOrderItem';
 import { useEffect } from "react";
@@ -23,50 +23,27 @@ const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 export default function UserOrder(props) {
 
   const [isLoading, setLoading] = useState(true);
-  const [orderItems, setOrderItems] = useState();
   const [checkout, showCheckout] = useState(false);
-  const [paid, paidStatus] = useState(false);
   const navigate = useNavigate();
-  const { order, setOrder } = useContext(OrderContext);
   const { state, cartTotal } = useContext(Context);
+  const { user } = useContext(UserContext);
+  const [orderItems, setItems] = useState();
 
-  // useEffect(() => {
-  //   state.cart.forEach((item) => {
-  //     addItem(item, order.id);
-  //   });
-  // }, []);
+  console.log('user', user)
 
-  // // Add unique item to DB
-  // const addItem = (item, orderID) => {
-
-  //   axios.post('/api/user/new-order-item', null, {
-  //     params: {
-  //       itemID: item.id,
-  //       orderID
-  //     }
-  //   })
-  //     .then(() => {
-  //       getOrder(orderID);
-  //     })
-  //     .catch((err) => { return 'error'; });
-  // };
   useEffect(() => {
-    axios.get(`/api/user/orders/${order.id}`)
-      .then(res => {
-        setOrder({
-          ...order,
-          orderItems: res.data.items
-        });
-        setLoading(false);
-      });
-  }, []);
+    console.log('useEffectRuns')
+    axios.get(`/api/user/orders/${user.orderID}`)
+    .then((res) => {
+      setItems(res.data.items)
+      setLoading(false)
+      })
+    .catch((err) => { return 'error'; });
+  }, [props.orderID, state.cart]);
 
-  if (isLoading) {
-    return <div> LOADING </div>;
-  }
 
   const orderPaid = () => {
-    axios.put(`/api/user/orders/${props.orderID}/paid`)
+    axios.put(`/api/user/orders/${user.orderID}/paid`)
       .then(res => {
         navigate('/user/thank-you');
 
@@ -74,7 +51,12 @@ export default function UserOrder(props) {
       .catch((err) => { return 'error'; });
   };
 
-  const displayOrderItems = order.orderItems.map((item) => {
+  if (isLoading) {
+    return <div> LOADING </div>;
+  }
+
+
+  const displayOrderItems = orderItems.map((item) => {
 
     return (
       <>
@@ -90,12 +72,12 @@ export default function UserOrder(props) {
   return (
     <>
       <div>
-        <h3> Your order was submitted. Feel free to pay now or start a tab if you plan on adding to your order</h3>
+        <h3> Submitted Items</h3>
+        <p>Our team is preparing the following:</p>
         {displayOrderItems}
       </div>
       <div>
         {!checkout && <button onClick={() => { showCheckout(true); }}>Settle Up</button>}
-        <button onClick={() => { navigate('/user/menu'); }}>Add to Order</button>
 
       </div>
       <div>
