@@ -1,13 +1,13 @@
 // import React from "react";
 import React, { useEffect, useState } from "react";
 import 'components/User/UserMenu.scss';
-import EditModal from '../AdminEdit';
+import EditItemModal from '../AdminEditItem';
 import DeleteItemModal from "../AdminDeleteItem";
 import axios from "axios";
 
 export default function ShowItem(props) {
 
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [showEditItemModal, setShowEditItemModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [id, setId] = useState(props.id);
   const [menuID, setMenuID] = useState(props.menuID);
@@ -18,7 +18,7 @@ export default function ShowItem(props) {
 
 
   const handleEdit = () => {
-    setShowEditModal(true);
+    setShowEditItemModal(true);
   };
 
   const handleEditSave = (editedItem) => {
@@ -31,7 +31,7 @@ export default function ShowItem(props) {
   };
 
   const handleEditClose = () => {
-    setShowEditModal(false);
+    setShowEditItemModal(false);
   };
 
   const handleDelete = () => {
@@ -68,8 +68,8 @@ export default function ShowItem(props) {
           </button>
         </section>
       </div>
-      {showEditModal && (
-        <EditModal
+      {showEditItemModal && (
+        <EditItemModal
           item={{
             id,
             menuID,
