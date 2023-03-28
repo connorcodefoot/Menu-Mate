@@ -8,7 +8,7 @@ function DeleteItemModal({ menu, onClose }) {
   const handleDelete = () => {
 
     return new Promise((resolve, reject) => {
-      axios.delete(`/api/admin/delete-item/${id}`)
+      axios.delete(`/api/admin/delete-item/${id}`, { params: { id } })
         .then((res) => {
           resolve(true);
           onClose();
