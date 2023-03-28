@@ -16,7 +16,6 @@ function UserInput() {
       [event.target.name]: event.target.value,
       orderID: 0
     });
-    console.log('input', user)
   };
 
   const handleSubmit = (event) => {
@@ -35,7 +34,6 @@ function UserInput() {
     };
   }, []);
 
-  console.log('input start', user)
   return (
     <>
       <main class="main">
