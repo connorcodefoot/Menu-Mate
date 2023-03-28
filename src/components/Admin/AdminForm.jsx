@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +8,7 @@ import Button from "../Button";
 
 export default function AdminForm(props) {
   const [id, setId] = useState(props.id || "");
+  const [menuID, setMenuID] = useState(props.id || "");
   const [title, setTitle] = useState(props.title || "");
   const [details, setDetails] = useState(props.details || "");
   const [price, setPrice] = useState(props.price || "");
@@ -18,10 +20,14 @@ export default function AdminForm(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const { id, title, details, price, picture } = location.state
+    const { id, menuID, title, details, price, picture } = location.state
 
     if (id) {
       setId(id)
+    }
+
+    if (menuID) {
+      setMenuID(menuID)
     }
 
     if (title) {
@@ -55,6 +61,30 @@ export default function AdminForm(props) {
     navigate('/admin/menu')
   }
 
+  function saveItem(id, menuID, title, details, price, picture) {
+  
+    return new Promise((resolve, reject) => {
+      axios.put(`/api/admin/edit-item`, null, { params: { 
+        id,
+        menuID,
+        title, 
+        details, 
+        price, 
+        picture 
+      }})
+        .then((res) => {
+          console.log(res)
+          console.log("success")
+          resolve(true);
+          navigate('/admin/menu');
+        })
+        .catch(error => {
+          reject(true);
+          console.log(error);
+        });
+    });
+  }
+
   const validate = () => {
     if (!title) {
       setError("Item name cannot be blank");
@@ -77,7 +107,7 @@ export default function AdminForm(props) {
     }
 
     setError("");
-    props.onSave(title, details, price, picture);
+    saveItem(id, menuID, title, details, price, picture);
   }
 
   return(
