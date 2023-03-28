@@ -3,63 +3,40 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Context, useContext } from '../../../Context/index';
 import { useNavigate } from "react-router-dom";
+import AddItemModal from '../AdminAddItem';
 
 import ShowItem from "./ShowItem";
 
 import 'components/User/UserMenu.scss'
 
 export default function Show(props) {
-
+  const [showAddModal, setShowAddModal] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [items, setItems] = useState ()
-  const [item, setItem] = useState({
-    id: "",
-    title: "",
-    details: "",
-    price: 0,
-    picture: ""
-  })
 
-  const { state } = useContext(Context);
+  const [title, setTitle] = useState("");
+  const [details, setDetails] = useState("");
+  const [price, setPrice] = useState();
+  const [picture, setPicture] = useState("");
 
-  const navigate = useNavigate();
 
-  function saveItem(id, menuID, title, details, price, picture) {
-    const newItem = {
-      id,
-      menuID,
-      title,
-      details,
-      price,
-      picture
-    };
+  const handleClick = () => {
+    setShowAddModal(true);
+  };
 
-    return new Promise((resolve, reject) => {
-      axios.put(`/api/admin/menus/${id}`)
-        .then(() => {
-          setItem({
-            newItem
-          });
-          resolve(true);
-          navigate('/admin/menu')
-        })
-        .catch(error => {
-          reject(true);
-          console.log(error);
-        });
-    });
-  }
+  const handleAddSave = (addedItem) => {
+    // save the edited item to backend or state
+    console.log('Added item:', addedItem);
+    setTitle(addedItem.title);
+    setDetails(addedItem.details);
+    setPrice(addedItem.price);
+    setPicture(addedItem.picture);
+  };
 
-  const redirect = (id, menuID, title, details, price, picture) => {
-    navigate('/admin/form', {state: {
-      id,
-      menuID,
-      title,
-      details,
-      price, 
-      picture
-    }})
-  }
+  const handleAddClose = () => {
+    setShowAddModal(false);
+  };
+
 
   useEffect(() => {
 
@@ -88,8 +65,6 @@ export default function Show(props) {
         details={item.details}
         price={item.price_cents}
         picture={item.picture}
-        onEdit={redirect}
-        onSave={saveItem}
       />
     </>
     );
@@ -97,6 +72,22 @@ export default function Show(props) {
 
   return (  
   <>
+    <button onClick={handleClick}>Add Menu Item</button>
+    {showAddModal && (
+        <AddItemModal
+          item={{
+            menuID: props.menuID,
+            title: title,
+            details: details,
+            price: price, 
+            picture: picture
+          }}
+          onSave={handleAddSave}
+          onClose={handleAddClose}
+          onUpdateTitle={setTitle}
+        />
+      )}
+    <br/>
     {displayItems}
   </>
   )

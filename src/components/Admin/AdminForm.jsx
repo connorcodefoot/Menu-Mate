@@ -64,7 +64,7 @@ export default function AdminForm(props) {
   function saveItem(id, menuID, title, details, price, picture) {
   
     return new Promise((resolve, reject) => {
-      axios.put(`/api/admin/new-item`, null, { params: { 
+      axios.put(`/api/admin/edit-item`, null, { params: { 
         id,
         menuID,
         title, 
