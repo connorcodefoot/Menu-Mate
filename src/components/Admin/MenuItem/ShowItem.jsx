@@ -53,10 +53,10 @@ export default function ShowItem(props) {
       {showEditModal && (
         <EditModal
           item={{
-            title: props.title,
-            details: props.details,
-            price: props.price, 
-            picture: props.picture
+            title: title,
+            details: details,
+            price: price, 
+            picture: picture
           }}
           onSave={handleEditSave}
           onClose={handleEditClose}
