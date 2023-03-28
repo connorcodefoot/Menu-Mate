@@ -1,39 +1,55 @@
-import React from "react";
+// import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import 'components/User/UserMenu.scss';
+import EditTitleModal from '../AdminEdit'
 
 export default function ShowItem(props) {
 
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [title, setTitle] = useState(props.title);
+  
+
+  const handleEdit = () => {
+    setShowEditModal(true);
+  };
+
+  const handleEditSave = (editedItem) => {
+    // save the edited item to backend or state
+    console.log('Edited item:', editedItem);
+    setTitle(editedItem.title);
+  };
+
+  const handleEditClose = () => {
+    setShowEditModal(false);
+  };
+  
   return (
     <>
-      <div class="user-menu-item">
-        <div class="item-info">
-          <img src={props.picture} class="item-imgs" />
-          <h1>{props.title}</h1>
+     <div>
+        <div>
+          <img src={props.picture} alt={title} />
+          <h1>{title}</h1>
           {props.details}
         </div>
-        <div class="item-option">
+        <div>
           <h3>{props.price / 100}</h3>
-          <h3>Item ID: {props.id}</h3>
         </div>
-        <section className="item__actions">
+        <section className="item-actions">
           <button
-            className="appointment__actions-button"
             alt="Edit"
-            onClick={() => props.onEdit(props.id, props.title, props.details, props.price, props.picture)}
-        
-          >Edit</button>
-          <button
-            className="appointment__actions-button"
-            alt="Delete"
-            onClick={props.onDelete}
-          >Delete</button>
+            onClick={handleEdit}
+          > Edit
+          </button>
         </section>
       </div>
+      {showEditModal && (
+        <EditTitleModal
+          item={{ title: props.title, details: props.details, price: props.price, picture: props.picture }}
+          onSave={handleEditSave}
+          onClose={handleEditClose}
+        />
+      )}
     </>
   );
 };
-
-
-
