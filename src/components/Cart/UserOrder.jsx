@@ -35,14 +35,14 @@ export default function UserOrder(props) {
   useEffect(() => {
     console.log('useEffectRuns');
     const getOrderItems = async () => {
-    await axios.get(`/api/user/orders/${user.orderID}`)
-      .then((res) => {
-        console.log(res)
-        setItems(res.data.items);
-        setLoading(false)
-      })
-      .catch((err) => { return 'error'; });
-    }
+      await axios.get(`/api/user/orders/${user.orderID}`)
+        .then((res) => {
+          console.log(res);
+          setItems(res.data.items);
+          setLoading(false);
+        })
+        .catch((err) => { return 'error'; });
+    };
 
     const timer = setTimeout(() => {
       getOrderItems();
@@ -50,7 +50,7 @@ export default function UserOrder(props) {
 
     return () => clearTimeout(timer);
 
-  },[ user.orderID, state.cart.length ]);
+  }, [user.orderID, state.cart.length]);
 
 
   const orderPaid = () => {
@@ -83,16 +83,18 @@ export default function UserOrder(props) {
   return (
     <>
       <div>
-        <h3 className="prev-order"> Submitted Items</h3>
+        <h3 className="prev-order"> Your Ordered Items</h3>
         <p className="prev-order-msg"> Our team is preparing the following:</p>
         <div className="prev-item">
           {displayOrderItems}
         </div>
       </div>
       <h4 className='order-total-end'><b>Order Total:</b> Working on it</h4>
-      <div>
+      <div className='btn-options'>
+        {!checkout && (
+          <button className='back' onClick={() => { navigate('/user/menu'); }}>
+            Back to Menu </button>)}
         {!checkout && <button className="settle" onClick={() => { showCheckout(true); }}>Settle Up</button>}
-
       </div>
       <div className="payment">
         {checkout && (

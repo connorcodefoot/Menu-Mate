@@ -21,7 +21,6 @@ function UserInput() {
   const handleSubmit = (event) => {
       event.preventDefault()
       navigate('/user/menu')
-
     }
 
   useEffect(() => {
