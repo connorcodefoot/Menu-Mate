@@ -18,7 +18,6 @@ body {
   opacity: 0.6;
 }
 
-
 .all-orders {
   display: flex;
   flex-wrap: wrap;
@@ -42,7 +41,6 @@ body {
 .order-info {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -56,6 +54,11 @@ body {
   justify-content: flex-end;
 }
 
+.order-status {
+  display: flex;
+  justify-content: center;
+}
+
 .admin-order-options {
   margin-top: 1rem;
   display: flex;
@@ -63,6 +66,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 
 button {
   margin-top: 15px;
@@ -96,4 +100,18 @@ button {
   text-decoration: underline;
   text-transform: uppercase;
   margin-bottom: 5px;
+}
+
+// Table styling for order details
+
+.table-status {
+  width: 25%;
+}
+
+.table-item {
+  width: 65%;
+}
+
+.table-price {
+  width: 5%;
 }

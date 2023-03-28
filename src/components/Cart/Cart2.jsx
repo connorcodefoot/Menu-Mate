@@ -38,7 +38,7 @@ const Cart2 = () => {
       .catch((err) => { return 'error'; });
   };
 
-  // Add items to order
+  // Add items to order using the orderID retrieved from SubmitOrder
   const addItems = (orderID) => {
 
     state.cart.forEach((item) => {
@@ -48,11 +48,11 @@ const Cart2 = () => {
     // Remove items from cart now that they are added to an order
     emptyCart();
 
-    // Set orderID on user
+    // Set orderID and orderTotal
     if (user.orderID === 0) {
       setUser({
         ...user,
-        orderID: orderID
+        orderID: orderID,
       });
     }
   };
