@@ -14,7 +14,7 @@ export default function AdminOrderView(props) {
       axios.get(`/api/admin/orders/${props.id}`),
     ])
       .then((all) => {
-        console.log(all[0])
+        console.log(all[0]);
         setOrderItems(all[0].data.items);
         setLoading(false);
       });
@@ -27,21 +27,39 @@ export default function AdminOrderView(props) {
 
   const displayOrderItems = orderItems.map((item) => {
 
-      return (
-        <>
-          <div class="order-items">
-            <p>{item.title}</p>
-            <p>${item.price_cents / 100}</p>
-          </div>
-        </>
-      );
-    }
+    return (
+      <>
+        <tr>
+          <td>
+            {item.order_item_status}
+          </td>
+          <td>
+            <b>{item.title}</b><br />
+            {item.notes && <>Notes: {item.notes}</>}
+          </td>
+          <td>
+            ${item.price_cents / 100}
+          </td>
+        </tr>
+      </>
+    );
+  });
+
+
+  return (
+    <div>
+      <tr>
+        <td class="table-status">
+          <h6>Status</h6>
+        </td>
+        <td class="table-item">
+          <h6>Item</h6>
+        </td>
+        <td class="table-price">
+          <h6>Price</h6>
+        </td>
+      </tr>
+      {displayOrderItems}
+    </div>
   );
-
-
-return (
-  <div>
-  {displayOrderItems}
-  </div>
-);
 }
