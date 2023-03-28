@@ -80,13 +80,10 @@ export default function Show(props) {
     return (
       <>
       <ShowItem
-        id={item.id}
         title={item.title}
         details={item.details}
         price={item.price_cents}
         picture={item.picture}
-        onEdit={redirect}
-        onSave={saveItem}
       />
     </>
     );
