@@ -1,5 +1,5 @@
-import React from 'react';
-import { Context, UserContext, useContext, OrderContext } from 'Context/index';
+import React, { useEffect } from 'react';
+import { Context, UserContext, useContext } from 'Context/index';
 import CartItem from './CartItem';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -9,20 +9,20 @@ import 'components/Cart/UserOrder.scss';
 import { useState } from 'react';
 // import UserOrderItem from './UserOrderItem';
 import UserOrder from './UserOrder.jsx';
+import { addItemToDB, getOrderTotal } from 'helpers/apiHelper';
 
 
 const Cart2 = () => {
 
-    // State controller
-    const { state, cartTotal, emptyCart } = useContext(Context);
-    const { order, setOrder } = useContext(OrderContext)
-    const [showOrder, showOrderController] = useState(false)
-    const total = cartTotal() / 100;
-    const { user } = useContext(UserContext);
-    const navigate = useNavigate()
+  // State controller
+  const { state, cartTotal, emptyCart } = useContext(Context);
+  const [showOrder, showOrderController] = useState(false);
+  const total = cartTotal() / 100;
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();  
 
   // Create an Order and get back an ID
-    const submitOrder = () => {
+  const submitOrder = () => {
 
     const newOrder = {
       customer_name: user.name,
@@ -32,70 +32,73 @@ const Cart2 = () => {
 
     axios.post('/api/user/new-order', null, { params: newOrder })
       .then(res => {
-        setOrder({
-        ...order,
-          id: res.data.rows[0].id,
-          total
-        })
-      })
-      .then(() => {
-        addItems()
-      })
-      .then(()=> {
-        showOrderController(true)
+        console.log(res)
+        addItems(res.data.rows[0].id)
       })
       .catch((err) => { return 'error'; });
     };
 
-    const addItems = () => {
+  // Add items to order
+  const addItems = (orderID) => {
 
-      state.cart.forEach((item) => {
-      axios.post('/api/user/new-order-item', null, {
-        params: {
-          itemID: item.id,
-          orderID: order.id
-        }
-      })
-      .then(() => {
-        emptyCart()
-      })
-        .catch((err) => { return 'error'; });
-      });
-    };
+    state.cart.forEach((item) => {
+      addItemToDB(item.id, orderID);
+    });
 
-  console.log(order)
+    // Remove items from cart now that they are added to an order
+    emptyCart();
+
+    // Set orderID on user
+    if (user.orderID === 0) {
+    setUser({
+      ...user,
+      orderID: orderID
+    })
+    }
+  };
+
+  const addMoreItems = () => {
+
+    state.cart.forEach((item) => {
+      addItemToDB(item.id, user.orderID);
+    });
+
+    // Remove items from cart now that they are added to an order
+    emptyCart();
+  };
+
   return (
     <>
-    {!showOrder && (<>
-      <div className="cart">
-        {state.cart.map((item) => (
-          <CartItem
-            key={item.id}
-            item={item}
-          />
-        ))}
-        <>Cart Total = ${total}</>
-        <button onClick={submitOrder}>
-          Submit Order
-        </button>
-        <button onClick={() => {navigate('/user/menu')}}>Add to Order</button>
-      </div>
-    </>)}
-    {showOrder && (<>
-    <div className="cart">
-        {state.cart.map((item) => (
-          <CartItem
-            key={item.id}
-            item={item}
-          />
-        ))}
-        <UserOrder orderID={order.id} />
-          Order Total = ${total}
-        <button onClick={addItems}>
-          Add Items to Order
-        </button>
-        <button onClick={() => {navigate('/user/menu')}}>Add to Order</button>
-      </div>
+      {(user.orderID === 0) && (<>
+        <div className="cart">
+          {state.cart.map((item) => (
+            <CartItem
+              key={item.id}
+              item={item}
+            />
+          ))}
+          <>Cart Total = ${total}</>
+          <button onClick={submitOrder}>
+            Submit Order
+          </button>
+          <button onClick={() => { navigate('/user/menu'); }}>Add to Order</button>
+        </div>
+      </>)}
+      {(user.orderID > 0) && (<>
+        <div className="cart">
+          {state.cart.map((item) => (
+            <CartItem
+              key={item.id}
+              item={item}
+            />
+          ))}
+          <UserOrder orderID={user.orderID}/>
+          Order Total = Working on it
+          <button onClick={addMoreItems}>
+            Add Items to Existing Order
+          </button>
+          <button onClick={() => { navigate('/user/menu'); }}>View Menu to add more</button>
+        </div>
       </>)}
     </>
   );

@@ -12,7 +12,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserHome from "pages/UserHome";
 import UserCart from "pages/UserCart";
 import UserMenuView from "pages/UserMenuView";
-import { Context, UserContext, OrderContext, useContext } from '../Context/index';
+import { Context, UserContext, useContext } from '../Context/index';
 import { useState } from "react";
 import CartView from "pages/CartView";
 import { NavLink } from "react-router-dom";
@@ -98,7 +98,6 @@ export default function Application() {
     <Context.Provider
       value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal, emptyCart }}>
       <UserContext.Provider value={{ user, setUser }}>
-        <OrderContext.Provider value={{ order, setOrder }}>
           <BrowserRouter>
             <Routes>
               <Route path="/admin" element={<AdminPortal />}></Route>
@@ -114,8 +113,7 @@ export default function Application() {
               <Route path="/user/thank-you" element={<UserThankyou />}></Route>
             </Routes>
           </BrowserRouter>
-        </OrderContext.Provider>
-      </UserContext.Provider>
+        </UserContext.Provider>
     </Context.Provider>
   );
 }

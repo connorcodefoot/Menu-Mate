@@ -7,19 +7,18 @@ import { useNavigate } from "react-router-dom";
 
 
 function UserInput() {
-
   const { user, setUser } = useContext(UserContext)
   const navigate = useNavigate()
 
   const handleChange = (event) => {
     setUser({
       ...user,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
+      orderID: 0
     });
   };
 
   const handleSubmit = (event) => {
-
       event.preventDefault()
       navigate('/user/menu')
 
