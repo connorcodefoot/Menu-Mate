@@ -2,12 +2,15 @@
 import React, { useEffect, useState } from "react";
 import 'components/User/UserMenu.scss';
 import EditModal from '../AdminEdit';
+import DeleteItemModal from "../AdminDeleteItem";
+import axios from "axios";
 
 export default function ShowItem(props) {
 
   const [showEditModal, setShowEditModal] = useState(false);
-  const [id, setId] = useState(props.id) 
-  const [menuID, setMenuID] = useState(props.menuID)
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [id, setId] = useState(props.id);
+  const [menuID, setMenuID] = useState(props.menuID);
   const [title, setTitle] = useState(props.title);
   const [details, setDetails] = useState(props.details);
   const [price, setPrice] = useState(props.price);
@@ -31,6 +34,14 @@ export default function ShowItem(props) {
     setShowEditModal(false);
   };
 
+  const handleDelete = () => {
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteClose = () => {
+    setShowDeleteModal(false);
+  };
+
   return (
     <>
       <div>
@@ -49,6 +60,12 @@ export default function ShowItem(props) {
             onClick={handleEdit}
           > Edit
           </button>
+          <button
+            className="appointment__actions-button"
+            alt="Edit"
+            onClick={handleDelete}
+          > Delete
+          </button>
         </section>
       </div>
       {showEditModal && (
@@ -58,11 +75,18 @@ export default function ShowItem(props) {
             menuID,
             title,
             details,
-            price, 
+            price,
             picture
           }}
           onSave={handleEditSave}
           onClose={handleEditClose}
+          onUpdateTitle={setTitle}
+        />
+      )}
+      {showDeleteModal && (
+        <DeleteItemModal
+          menu={{ id }}
+          onClose={handleDeleteClose}
           onUpdateTitle={setTitle}
         />
       )}
