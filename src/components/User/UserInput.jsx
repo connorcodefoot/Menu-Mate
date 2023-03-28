@@ -81,7 +81,7 @@ function UserInput() {
                   class="btn btn-primary btn-block btn-lg"
                   className="menu-btn"
                 >
-                Continue to menu
+                Continue to Menu
                 </button>
               </div>
             </form>
