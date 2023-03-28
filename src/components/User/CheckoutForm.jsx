@@ -27,9 +27,24 @@ export default function CheckoutForm (props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <CardElement />
-      <button type="submit" onClick={props.onClick}>
-        Pay
+      <CardElement 
+          options={{
+            style: {
+              base: {
+                fontSize: '16px',
+                color: '#424770',
+                '::placeholder': {
+                  color: '#aab7c4',
+                },
+              },
+              invalid: {
+                color: '#9e2146',
+              },
+            },
+          }}
+      />
+      <button className="pay" type="submit" onClick={props.onClick}>
+        Pay Now
       </button>
     </form>
   );
