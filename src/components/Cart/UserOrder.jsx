@@ -31,17 +31,26 @@ export default function UserOrder(props) {
   const { user } = useContext(UserContext);
   const [orderItems, setItems] = useState();
 
-  console.log('user', user);
 
   useEffect(() => {
     console.log('useEffectRuns');
-    axios.get(`/api/user/orders/${user.orderID}`)
+    const getOrderItems = async () => {
+    await axios.get(`/api/user/orders/${user.orderID}`)
       .then((res) => {
+        console.log(res)
         setItems(res.data.items);
-        setLoading(false);
+        setLoading(false)
       })
       .catch((err) => { return 'error'; });
-  }, [props.orderID, state.cart]);
+    }
+
+    const timer = setTimeout(() => {
+      getOrderItems();
+    }, 1000);
+
+    return () => clearTimeout(timer);
+
+  },[ user.orderID, state.cart.length ]);
 
 
   const orderPaid = () => {
@@ -54,7 +63,7 @@ export default function UserOrder(props) {
   };
 
   if (isLoading) {
-    return <div> LOADING </div>;
+    return <div> LOADING YOUR ORDER </div>;
   }
 
 
