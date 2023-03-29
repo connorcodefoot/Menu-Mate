@@ -26,7 +26,6 @@ export default function AdminCategoriesForm(props) {
     return new Promise((resolve, reject) => {
       axios.post(`/api/admin/new-menu`, null, { params: { title } } )
         .then((res) => {
-          console.log(res)
           resolve(true);
           navigate('/admin/categories');
         })

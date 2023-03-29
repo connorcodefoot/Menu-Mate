@@ -15,10 +15,13 @@ const addItemToDB = (itemID, orderID) => {
 const getOrderTotal = (orderID) => {
 
   axios.get(`api/user/order-total/${orderID}`)
-    .then((res) => {
-      return res.data.items.rows[0].sum
-    })
+  .then((res) => {
+    console.log(res.data.data.rows[0].sum)
+    return res.data.data.rows[0].sum
+  })
+  .catch(err => { return err })
+  
 
 }
 
-export { addItemToDB, getOrderTotal } 
+export { addItemToDB } 

@@ -26,11 +26,7 @@ export default function Application() {
   });
 
   const [user, setUser] = useState('');
-  const [order, setOrder] = useState({
-    id: 0,
-    total: 0,
-    orderItems: []
-  });
+
 
   const addToCart = (item, note) => {
     setState({

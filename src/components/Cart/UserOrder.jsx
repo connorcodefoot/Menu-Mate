@@ -19,25 +19,25 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 
-
 const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+
 
 export default function UserOrder(props) {
 
+
+  // State controllers
   const [isLoading, setLoading] = useState(true);
   const [checkout, showCheckout] = useState(false);
   const navigate = useNavigate();
   const { state, cartTotal } = useContext(Context);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [orderItems, setItems] = useState();
-
+  const [orderTotal, setOrderTotal] = useState()
 
   useEffect(() => {
-    console.log('useEffectRuns');
     const getOrderItems = async () => {
     await axios.get(`/api/user/orders/${user.orderID}`)
       .then((res) => {
-        console.log(res)
         setItems(res.data.items);
         setLoading(false)
       })
@@ -46,12 +46,29 @@ export default function UserOrder(props) {
 
     const timer = setTimeout(() => {
       getOrderItems();
-    }, 1000);
+    }, 2000);
 
     return () => clearTimeout(timer);
 
-  },[ user.orderID, state.cart.length ]);
+    },[ user.orderID, state.cart.length ]);
 
+  useEffect(() => {
+    const orderTotal = async () => {
+    await axios.get(`api/user/order-total/${user.orderID}`)
+    .then((res) => {
+      setOrderTotal(res.data.data.rows[0].sum)
+    })
+    .catch(err => { return err })
+    }
+
+    const timer = setTimeout(() => {
+      orderTotal();
+    }, 2000);
+
+    return () => clearTimeout(timer);
+
+    },[ state.cart.length ]);
+  
 
   const orderPaid = () => {
     axios.put(`/api/user/orders/${user.orderID}/paid`)
@@ -65,7 +82,6 @@ export default function UserOrder(props) {
   if (isLoading) {
     return <div> LOADING YOUR ORDER </div>;
   }
-
 
   const displayOrderItems = orderItems.map((item) => {
 
@@ -89,7 +105,7 @@ export default function UserOrder(props) {
           {displayOrderItems}
         </div>
       </div>
-      <h4 className='order-total-end'><b>Order Total:</b> Working on it</h4>
+      <h4 className='order-total-end'><b>Order Total: ${orderTotal / 100}</b></h4>
       <div>
         {!checkout && <button className="settle" onClick={() => { showCheckout(true); }}>Settle Up</button>}
 

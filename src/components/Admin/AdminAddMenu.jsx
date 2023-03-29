@@ -18,7 +18,6 @@ function AddMenuModal({ menu, onSave, onClose }) {
         })
         .catch(error => {
           reject(true);
-          console.log(error);
         });
     });
 

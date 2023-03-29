@@ -9,7 +9,7 @@ import 'components/Cart/UserOrder.scss';
 import { useState } from 'react';
 // import UserOrderItem from './UserOrderItem';
 import UserOrder from './UserOrder.jsx';
-import { addItemToDB, getOrderTotal } from 'helpers/apiHelper';
+import { addItemToDB } from 'helpers/apiHelper';
 
 
 const Cart2 = () => {
