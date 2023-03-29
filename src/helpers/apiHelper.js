@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 
-const addItemToDB = (itemID, orderID) => {
+const addItemToDB = (itemID, orderID, notes) => {
 
   axios.post('/api/user/new-order-item', null, {
     params: {
       itemID,
-      orderID
+      orderID,
+      notes
     }
   })
 
