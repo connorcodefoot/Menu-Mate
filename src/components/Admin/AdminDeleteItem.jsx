@@ -5,6 +5,8 @@ import { Modal, Button } from 'react-bootstrap';
 function DeleteItemModal({ menu, onClose }) {
   const [id, setId] = useState(menu.id)
 
+  const refresh = () => window.location.reload(true)
+
   const handleDelete = () => {
 
     return new Promise((resolve, reject) => {
@@ -12,6 +14,7 @@ function DeleteItemModal({ menu, onClose }) {
         .then((res) => {
           resolve(true);
           onClose();
+          refresh();
         })
         .catch(error => {
           reject(true);
