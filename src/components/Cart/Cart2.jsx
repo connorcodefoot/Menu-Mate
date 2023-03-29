@@ -73,7 +73,7 @@ const Cart2 = () => {
   return (
     <>
 
-      <h1 className="restaurant-name">*RESTAURANT NAME*</h1>
+      <h1 className="restaurant-name">Rubber Duck Bistro</h1>
       <button className='to-menu' onClick={() => { navigate('/user/menu'); }}>
         <FontAwesomeIcon icon={faAnglesLeft} size="xl" />
         <span className='hover-text'> Back to Menu </span>

@@ -11,7 +11,7 @@ export default function Navbar() {
     <nav class='admin-nav'>
       <div><h6>Logged in as: ADMIN</h6></div>
 
-      <div><h1> Pagliacci's </h1></div>
+      <div><h1> Rubber Duck Bistro </h1></div>
       <div class="admin-nav-buttons">     
         <button class="admin-nav-button" onClick={() => navigate('/admin/menu')}> Menus </button>
         <button class="admin-nav-button" onClick={() => navigate('/admin/orders')}> Orders </button>
