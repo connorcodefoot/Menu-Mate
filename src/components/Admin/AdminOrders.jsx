@@ -95,7 +95,7 @@ export default function AdminOrders() {
           </Modal.Header>
           <Modal.Body className="my-modal-body">
             <AdminOrderView id={selectedOrder.id} />
-            <p className="order-total">Total: ${selectedOrder.order_total_cents}</p>
+            <p className="order-total">Total: ${selectedOrder.order_total_cents / 100}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseModal}>

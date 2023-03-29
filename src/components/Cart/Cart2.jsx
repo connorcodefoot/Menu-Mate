@@ -45,7 +45,7 @@ const Cart2 = () => {
   const addItems = (orderID) => {
 
     state.cart.forEach((item) => {
-      addItemToDB(item.id, orderID);
+      addItemToDB(item.id, orderID, item.note);
     });
 
     // Remove items from cart now that they are added to an order
@@ -62,8 +62,9 @@ const Cart2 = () => {
 
   const addMoreItems = () => {
 
+
     state.cart.forEach((item) => {
-      addItemToDB(item.id, user.orderID);
+      addItemToDB(item.id, user.orderID, item.note);
     });
 
     // Remove items from cart now that they are added to an order
@@ -106,19 +107,21 @@ const Cart2 = () => {
               item={item}
             />
           ))}
-          <div className='adding-msg'>
-            <button className="btn-add-more" onClick={addMoreItems}>
-            <FontAwesomeIcon className='send-icon'icon={faPaperPlane} beatFade/>
-              Send New Items
-            </button>
-            <p className='new-order-msg'>These new items will be added to your existing order below once sent</p>
-          </div>
+          {(state.cart.length >= 1) && (<>
+            <div className='adding-msg'>
+              <button className="btn-add-more" onClick={addMoreItems}>
+                <FontAwesomeIcon className='send-icon' icon={faPaperPlane} beatFade />
+                Send New Items
+              </button>
+              <p className='new-order-msg'>These new items will be added to your existing order below once sent</p>
+            </div>
+          </>)}
           <UserOrder orderID={user.orderID} />
         </div>
-      </>)}
-    </>
-  );
+        </>)}
+      </>
+      );
 };
 
 
-export default Cart2;
+      export default Cart2;
