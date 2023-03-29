@@ -10,6 +10,9 @@ import { useState } from 'react';
 // import UserOrderItem from './UserOrderItem';
 import UserOrder from './UserOrder.jsx';
 import { addItemToDB, getOrderTotal } from 'helpers/apiHelper';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 
 const Cart2 = () => {
@@ -69,11 +72,17 @@ const Cart2 = () => {
 
   return (
     <>
-      <nav>
-        <h1 className="rest-name">*RESTAURANT NAME*</h1>
-      </nav>
-      <h2 className="user-order">YOUR CURRENT ORDER</h2>
-      <button className="btn-add" onClick={() => { navigate('/user/menu'); }}>+ Add to Order</button>
+
+      <h1 className="restaurant-name">*RESTAURANT NAME*</h1>
+      <button className='to-menu' onClick={() => { navigate('/user/menu'); }}>
+        <FontAwesomeIcon icon={faAnglesLeft} size="xl" />
+        <span className='hover-text'> Back to Menu </span>
+      </button>
+
+
+
+      {/* <h2 className="user-order">ITEMS TO BE SENT</h2> */}
+      {/* <button className="btn-add" onClick={() => { navigate('/user/menu'); }}>Back to Menu</button> */}
 
       {(user.orderID === 0) && (<>
         <div className="order">
@@ -85,7 +94,7 @@ const Cart2 = () => {
           ))}
           <h4 className='order-total-user'><b>Order Total:</b> ${total}</h4>
           <button className="place" onClick={submitOrder}>
-            <b>Place Order</b>
+            <b>Submit Order</b>
           </button>
         </div>
       </>)}
@@ -97,9 +106,13 @@ const Cart2 = () => {
               item={item}
             />
           ))}
-          <button className="btn-add-more" onClick={addMoreItems}>
-            Add Items to Existing Order
-          </button>
+          <div className='adding-msg'>
+            <button className="btn-add-more" onClick={addMoreItems}>
+            <FontAwesomeIcon className='send-icon'icon={faPaperPlane} beatFade/>
+              Send New Items
+            </button>
+            <p className='new-order-msg'>These new items will be added to your existing order below once sent</p>
+          </div>
           <UserOrder orderID={user.orderID} />
         </div>
       </>)}

@@ -2,12 +2,54 @@
 nav {
   background-color: white;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-.rest-name {
-  padding: 1em;
+.restaurant-name {
+  margin-top: 2em;
+  padding-bottom: .5;
+  // padding: 1em;
   text-align: center;
 }
+
+// .to-menu {
+//   display: flex;
+//   // margin-top: 1.25em;
+// }
+
+// .hover-text {
+//   display: none
+// }
+
+// .to-menu:hover .hover-text {
+//   display: block;
+// }
+
+.to-menu {
+  position: relative;
+  border: none;
+  // margin-top: -em;
+  margin-left: 1em;
+}
+
+.to-menu:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);;
+}
+
+.hover-text {
+  // position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.to-menu:hover .hover-text {
+  opacity: 1;
+}
+
 
 .options {
   border-radius: 500px;
