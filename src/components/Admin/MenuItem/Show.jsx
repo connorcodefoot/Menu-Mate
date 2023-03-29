@@ -72,7 +72,7 @@ export default function Show(props) {
 
   return (  
   <>
-    <button onClick={handleClick}>Add Menu Item</button>
+    <button className="new-menu-item"onClick={handleClick}>Add Menu Item</button>
     <br></br>
     <br></br>
     {showAddModal && (

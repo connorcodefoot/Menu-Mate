@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { Context, useContext } from '../../Context/index';
 import { Accordion, Button, Modal } from "react-bootstrap";
 import MenuList from "../User/MenuList";
-import 'components/User/UserMenu.scss';
+// import 'components/User/UserMenu.scss';
+import 'components/Admin/AdminMenu.scss';
 
 export default function AdminMenu() {
   // SET STATES
@@ -62,8 +63,9 @@ export default function AdminMenu() {
             eventKey={menu.id}
             key={menu.id}
           >
-            <Accordion.Header>
+            <Accordion.Header className="my-acc-header">
               <MenuList
+                className="my-acc-header"
                 id={menu.id}
                 title={menu.title}
                 // state={state.cart}

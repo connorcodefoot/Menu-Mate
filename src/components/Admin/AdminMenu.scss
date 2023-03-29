@@ -1,0 +1,74 @@
+#new-menu-button {
+  margin-left: 1em;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);;
+}
+
+.edit-button, .new-menu-item {
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);;
+}
+
+
+@media only screen and (min-width: 600px) {
+  .admin-menu-item {
+    font-family: 'Noto Sans JP', sans-serif;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    margin: 1rem;
+    padding: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    background-color: rgb(246, 246, 246);
+    border-radius: 20px;
+    justify-content: space-between;
+
+    .item__details__left {
+      display: flex;
+      flex-direction: row;
+      width: 70%;
+      margin-top: 0;
+    }
+
+    .item__details__right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding: 1rem;
+      width: 20%;
+    }
+
+    .item__description {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+    }
+
+    .item__actions {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      margin: 0;
+    }
+
+    #item-details {
+      display: flex;
+      text-align: left;
+    }
+
+    #delete-button {
+      margin-right: 0;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);;    
+    }
+  }
+
+  body>iframe {
+    pointer-events: none;
+  }
+}

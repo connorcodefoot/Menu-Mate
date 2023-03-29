@@ -60,7 +60,7 @@ export default function ShowItem(props) {
             <h3 id="price">{price / 100}</h3>
             <div className="item__actions">
               <button
-                className="appointment__actions-button"
+                className="edit-button"
                 alt="Edit"
                 onClick={handleEdit}
               > Edit
