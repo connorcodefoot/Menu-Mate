@@ -38,7 +38,7 @@ function UserInput() {
       <main class="main">
         <img src={MMLogo} alt="MM Logo" class="logo"/>
         <h1 class="welcome"> WELCOME TO </h1>
-        <h1 class="restaurant"> *RESTAURANT* </h1>
+        <h1 class="restaurant"> Rubber Duck Bistro </h1>
         <section>
           <div class="input-field">
             <form onSubmit={handleSubmit}>

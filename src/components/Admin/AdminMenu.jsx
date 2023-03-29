@@ -63,9 +63,8 @@ export default function AdminMenu() {
             eventKey={menu.id}
             key={menu.id}
           >
-            <Accordion.Header className="my-acc-header">
+            <Accordion.Header className='accordion'>
               <MenuList
-                className="my-acc-header"
                 id={menu.id}
                 title={menu.title}
                 // state={state.cart}
