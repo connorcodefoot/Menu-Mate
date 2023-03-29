@@ -1,13 +1,13 @@
 // import React from "react";
 import React, { useEffect, useState } from "react";
 import 'components/User/UserMenu.scss';
-import EditModal from '../AdminEdit';
+import EditItemModal from '../AdminEditItem';
 import DeleteItemModal from "../AdminDeleteItem";
 import axios from "axios";
 
 export default function ShowItem(props) {
 
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [showEditItemModal, setShowEditItemModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [id, setId] = useState(props.id);
   const [menuID, setMenuID] = useState(props.menuID);
@@ -18,7 +18,7 @@ export default function ShowItem(props) {
 
 
   const handleEdit = () => {
-    setShowEditModal(true);
+    setShowEditItemModal(true);
   };
 
   const handleEditSave = (editedItem) => {
@@ -31,7 +31,7 @@ export default function ShowItem(props) {
   };
 
   const handleEditClose = () => {
-    setShowEditModal(false);
+    setShowEditItemModal(false);
   };
 
   const handleDelete = () => {
@@ -44,32 +44,39 @@ export default function ShowItem(props) {
 
   return (
     <>
-      <div>
-        <div>
-          <img src={picture} />
-          <h1>{title}</h1>
-          {details}
-        </div>
-        <div>
-          <h3>{price / 100}</h3>
-        </div>
-        <section className="item__actions">
-          <button
-            className="appointment__actions-button"
-            alt="Edit"
-            onClick={handleEdit}
-          > Edit
-          </button>
-          <button
-            className="appointment__actions-button"
-            alt="Edit"
-            onClick={handleDelete}
-          > Delete
-          </button>
+      <div class="admin-menu-item">
+        <section class="item__details__left">
+          <div>
+            <img src={picture} />
+          </div>
+          <div class="item__description">
+            <h1>{title}</h1>
+            <div id="item-details">
+              {details}
+            </div>
+          </div>
+        </section>
+        <section class="item__details__right">
+            <h3 id="price">{price / 100}</h3>
+            <div className="item__actions">
+              <button
+                className="appointment__actions-button"
+                alt="Edit"
+                onClick={handleEdit}
+              > Edit
+              </button>
+              <button
+                className="appointment__actions-button"
+                id="delete-button"
+                alt="Edit"
+                onClick={handleDelete}
+              > Delete
+              </button>
+          </div>
         </section>
       </div>
-      {showEditModal && (
-        <EditModal
+      {showEditItemModal && (
+        <EditItemModal
           item={{
             id,
             menuID,

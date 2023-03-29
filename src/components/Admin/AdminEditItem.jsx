@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { Modal, Form, Button } from 'react-bootstrap';
 
-function EditModal({ item, onSave, onClose }) {
+function EditItemModal({ item, onSave, onClose }) {
   const [id, setId] = useState(item.id)
   const [menuID, setMenuID] = useState(item.menuID)
   const [title, setTitle] = useState(item.title);
@@ -96,4 +96,4 @@ function EditModal({ item, onSave, onClose }) {
   );
 }
 
-export default EditModal;
+export default EditItemModal;

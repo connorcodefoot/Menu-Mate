@@ -5,6 +5,8 @@ import { Modal, Form, Button } from 'react-bootstrap';
 function AddMenuModal({ menu, onSave, onClose }) {
   const [title, setTitle] = useState(menu.title);
 
+  const refresh = () => window.location.reload(true)
+
   const handleSave = () => {
     onSave({
       title
@@ -15,6 +17,7 @@ function AddMenuModal({ menu, onSave, onClose }) {
         .then((res) => {
           resolve(true);
           onClose();
+          refresh();
         })
         .catch(error => {
           reject(true);

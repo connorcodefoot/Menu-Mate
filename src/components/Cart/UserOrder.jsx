@@ -66,8 +66,7 @@ export default function UserOrder(props) {
     }, 2000);
 
     return () => clearTimeout(timer);
-
-    },[ state.cart.length ]);
+  }, [state.cart.length]);
   
 
   const orderPaid = () => {
@@ -99,16 +98,18 @@ export default function UserOrder(props) {
   return (
     <>
       <div>
-        <h3 className="prev-order"> Submitted Items</h3>
+        <h3 className="prev-order"> Your Ordered Items</h3>
         <p className="prev-order-msg"> Our team is preparing the following:</p>
         <div className="prev-item">
           {displayOrderItems}
         </div>
       </div>
-      <h4 className='order-total-end'><b>Order Total: ${orderTotal / 100}</b></h4>
-      <div>
+      <h4 className='order-total-end'><b>Order Total:</b> ${orderTotal / 100}</h4>
+      <div className='btn-options'>
+        {!checkout && (
+          <button className='back' onClick={() => { navigate('/user/menu'); }}>
+            Back to Menu </button>)}
         {!checkout && <button className="settle" onClick={() => { showCheckout(true); }}>Settle Up</button>}
-
       </div>
       <div className="payment">
         {checkout && (

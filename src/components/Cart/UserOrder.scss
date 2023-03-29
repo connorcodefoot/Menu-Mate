@@ -36,7 +36,7 @@ nav {
 
 .user-order {
   margin-left: 1em;
-  font-weight: bold;
+  margin-top: .5em;
 }
 
 .info {
@@ -101,6 +101,15 @@ nav {
 
 .prev-order-msg {
   margin-left: 1.5em;
+}
+
+.new-order-msg {
+  margin-left: 1.5em;
+  font-size: 10px;
+}
+
+.send-icon {
+  padding-right: 10px;
 }
 
 .item-name {
@@ -201,7 +210,7 @@ nav {
 
 .btn-options {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .btn-options button {
@@ -209,7 +218,7 @@ nav {
   margin-bottom: 2em;
 }
 
-.place, .settle {
+.place {
   background: transparent;
   margin-top: 1em;
   text-align: center;
@@ -221,6 +230,20 @@ nav {
   border-radius: 0.25rem;
   margin-left: 1em;
   margin-bottom: 2em;
+}
+
+.settle, .back {
+  background: transparent;
+  margin-top: 1.5em;
+  text-align: center;
+  border: none;
+  background-color: black;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.75rem 5rem;
+  border-radius: 0.25rem;
+  margin-bottom: 2em;
+  margin-left: 10px;
 }
 
 .pay {
@@ -244,7 +267,7 @@ nav {
 
 }
 
-.place:hover, .pay:hover {
+.place:hover, .pay:hover, .settle:hover, .back:hover {
   background: white;
   color: black;
   border: 2px solid black;

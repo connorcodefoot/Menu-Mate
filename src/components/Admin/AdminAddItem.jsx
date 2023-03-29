@@ -9,6 +9,7 @@ function AddItemModal({ item, onSave, onClose }) {
   const [price, setPrice] = useState(item.price);
   const [picture, setPicture] = useState(item.picture);
 
+  const refresh = () => window.location.reload(true)
 
   const handleSave = () => {
     onSave({
@@ -30,6 +31,7 @@ function AddItemModal({ item, onSave, onClose }) {
         .then((res) => {
           resolve(true);
           onClose();
+          refresh();
         })
         .catch(error => {
           reject(true);
