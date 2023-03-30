@@ -21,6 +21,22 @@ export default function AdminOrderView(props) {
 
   }, []);
 
+  const handleChange = (event) => {
+
+    axios.put(`/api/admin/order-status/${props.id}`, null, {
+      params: {
+        orderStatus: 'In Progress',
+        id: props.id
+      }
+    })
+    .then(() => {
+      console.log('Updated')
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  };
+
   if (isLoading) {
     return <div> LOADING </div>;
   }
@@ -31,7 +47,12 @@ export default function AdminOrderView(props) {
       <>
         <tr>
           <td>
-            {item.order_item_status}
+          <div class="form-check form-switch">
+          <input
+           type="checkbox" 
+           onChange={handleChange}
+          />
+          </div>
           </td>
           <td>
             <b>{item.title}</b><br />
@@ -50,7 +71,7 @@ export default function AdminOrderView(props) {
     <div>
       <tr>
         <td class="table-status">
-          <h6>Status</h6>
+          <h6>Completed</h6>
         </td>
         <td class="table-item">
           <h6>Item</h6>
