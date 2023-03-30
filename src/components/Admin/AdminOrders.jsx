@@ -38,7 +38,23 @@ export default function AdminOrders() {
   };
 
   const handleCloseModal = () => {
+    window.location.reload(true);
     setShowModal(false);
+  };
+
+  const updateStatus = (id) => {
+    axios.put(`/api/admin/order-status/${id}`, null, {
+      params: {
+        orderStatus: 'Done',
+        id: id
+      }
+    })
+    .then(() => {
+      console.log('Updated')
+    })
+    .catch(error => {
+      console.log(error);
+    });
   };
 
 
@@ -66,12 +82,11 @@ export default function AdminOrders() {
                   View Order Details
                 </button>
               </form>
-              {/* <form>
-                <button className="set" type="submit">Set to In Progress</button>
-              </form>
+              {(order.order_status !== 'Done') && (<>
               <form>
-                <button className="paid" type="submit">Mark Paid</button>
-              </form> */}
+                <button className="set" onClick={() => {updateStatus(order.id)}}>Set to Done</button>
+              </form>
+              </>)}
             </div>
           </div>
         </div>
