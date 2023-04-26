@@ -23,6 +23,9 @@
     "react-scripts": "3.4.4",
     "stripe": "^11.16.0"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -30,6 +33,10 @@
     "eject": "react-scripts eject",
     "db:reset": "node bin/resetdb.js"
   },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",
