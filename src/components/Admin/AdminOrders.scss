@@ -1,30 +1,119 @@
-.admin-orders {
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.admin-background::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: white;
+  background-color: #ed7a00f3;
+  background-image: url("https://www.transparenttextures.com/patterns/food.png");
+  opacity: 0.6;
+}
+
+.all-orders {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .admin-order {
-  margin: 1rem;
-  padding: 2rem;
-  width: 30%;
-  box-sizing: border-box;
-  background-color: rgb(246, 246, 246);
-  border-radius: 20px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  padding: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  width: 22em;
+  height: 14em;
 }
 
+.my-modal-title {
+  font-family: 'Noto Sans JP', sans-serif;
+}
 .order-info {
   display: flex;
   justify-content: space-between;
+  text-align: center;
 }
 
 .order-items {
   display: flex;
-  justify-content: space-evenly;
-  margin: 1rem;
+  justify-content: space-between;
+}
+
+.order-total {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.order-status {
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  font-size: larger;
 }
 
 .admin-order-options {
   margin-top: 1rem;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+button {
+  margin-top: 15px;
+  margin-right: 10px;
+  border-radius: 20px;
+  padding: 7px;
+  background: white;
+}
+
+.set, .view {
+  border: 2px solid #ed7a00f3;
+  color: #ed7a00f3;
+}
+
+.set:hover, .view:hover {
+  background: #ed7a00f3;
+  color: white;
+}
+
+.paid {
+  border: 2px solid #118e11;
+  color: #118e11;
+}
+
+.paid:hover {
+  background: #118e11;
+  color: white;
+}
+
+.customer, .order {
+  text-decoration: underline;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+// Table styling for order details
+
+.table-status {
+  width: 25%;
+}
+
+.table-item {
+  width: 65%;
+}
+
+.table-price {
+  width: 5%;
 }

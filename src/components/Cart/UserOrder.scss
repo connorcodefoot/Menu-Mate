@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+nav {
+  background-color: white;
+  position: relative;
+}
+
+.rest-name {
+  padding: 1em;
+  text-align: center;
+  margin-bottom: .75em;
+}
+
+.btn-add {
+  margin-left: 1.25em;
+  background-color: rgb(229, 228, 228);
+  border: none;
+  border-radius: 20px;
+  padding: 7px;
+  width: 9em;
+}
+
+.btn-add-more {
+  margin-left: 1.25em;
+  background-color: rgb(229, 228, 228);
+  border: none;
+  border-radius: 20px;
+  padding: 7px;
+  width: 15em;
+  margin-bottom: 1em;
+}
+
+.user-order {
+  margin-left: 1em;
+  margin-top: .5em;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  padding-top: .75em;
+}
+
+.list-item {
+  display: flex;
+  margin: 1em;
+  padding: 1rem;
+  padding-bottom: 2em;
+  border-bottom: 2px solid lightgray;
+}
+
+.list-item-info {
+  margin-right: 3.75em;
+}
+
+.list-item-image {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 110px;
+  width: 110px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-left: 3em;
+}
+
+.title {
+  margin-bottom: 1em;
+}
+
+.prev-list-item {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5em;
+  padding: 1rem;
+  padding-bottom: 2em;
+  border-bottom: 2px solid lightgray;
+  color: darkgray;
+}
+
+.prev-list-item-info {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.prev-total {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.prev-order {
+  margin-left: 1em;
+  
+}
+
+.prev-order-msg {
+  margin-left: 1.5em;
+}
+
+.new-order-msg {
+  margin-left: 1.5em;
+  font-size: 10px;
+}
+
+.send-icon {
+  padding-right: 10px;
+}
+
+.item-name {
+  width: 8em;
+}
+
+.subtotal {
+  margin-right: 1.1em;
+  margin-left: 50px;
+}
+
+.pos-quantity {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1em;
+  padding-bottom: .5em;
+  margin-right: .75em;
+  margin-left: 50px;
+  
+}
+
+.no-quantity {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1em;
+  padding-bottom: .5em;
+  margin-right: .75em;
+}
+
+.no-quantity button {
+  background-color: rgb(229, 228, 228);
+  border: none;
+  border-radius: 20px;
+  padding: 5px;
+  margin-bottom: .5em;
+}
+
+.pos-quantity button {
+  border-radius: 50%;
+  background: transparent;
+  color: #f59068;
+  border-color: #f59068;
+  height: 1.75em;
+  width: 1.75em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: .75em;
+  margin-right: .75em;
+}
+
+.count {
+  margin-top: .9em;
+}
+
+.btn-note {
+  background: transparent;
+  color: #999;
+  border: none;
+  text-decoration: underline;
+  padding: 0em;
+  display: flex;
+  justify-content: left;
+  margin-top: 1em;
+  margin-bottom: .75em;
+}
+
+.btn-note:hover {
+  color: black;
+}
+
+.note-msg {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.order {
+  text-decoration: none;
+}
+
+.order-total-user, .prev-order {
+  margin-top: 1.5em;
+  margin-left: 1em;
+  margin-bottom: .75em;
+}
+
+.order-total-user b, .order-total-end b {
+  text-decoration: underline;
+}
+
+.order-total-end {
+  margin-top: 1.5em;
+  margin-left: 1em;
+}
+
+.btn-options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-options button {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.place {
+  background: transparent;
+  margin-top: 1em;
+  text-align: center;
+  border: none;
+  background-color: black;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.75rem 5rem;
+  border-radius: 0.25rem;
+  margin-left: 1em;
+  margin-bottom: 2em;
+}
+
+.settle, .back {
+  background: transparent;
+  margin-top: 1.5em;
+  text-align: center;
+  border: none;
+  background-color: black;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.75rem 5rem;
+  border-radius: 0.25rem;
+  margin-bottom: 2em;
+  margin-left: 10px;
+}
+
+.pay {
+  background: transparent;
+  margin-top: 1em;
+  text-align: center;
+  border: none;
+  background-color: black;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.75rem 5rem;
+  border-radius: 0.25rem;
+  margin-bottom: 2em;
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3em;
+  margin-left: 1em;
+
+}
+
+.place:hover, .pay:hover, .settle:hover, .back:hover {
+  background: white;
+  color: black;
+  border: 2px solid black;
+}

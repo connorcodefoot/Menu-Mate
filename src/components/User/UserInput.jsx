@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from "react";
 import 'components/User/UserInput.scss';
 import MMLogo from '../../MMLogo.gif';
+import { useContext, UserContext } from '../../Context/index';
+import UserMenuView from "pages/UserMenuView";
+import { useNavigate } from "react-router-dom";
+
 
 function UserInput() {
-  const [state, setState] = useState({
-    name: "",
-    table: "",
-    phone: ""
-  });
+  const { user, setUser } = useContext(UserContext)
+  const navigate = useNavigate()
 
   const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value,
+      orderID: 0
     });
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-  };
+      event.preventDefault()
+      navigate('/user/menu')
+    }
 
   useEffect(() => {
     // Add the home-background class to the body element (this is being used for background color on home page without affecting other pages)
@@ -35,7 +38,7 @@ function UserInput() {
       <main class="main">
         <img src={MMLogo} alt="MM Logo" class="logo"/>
         <h1 class="welcome"> WELCOME TO </h1>
-        <h1 class="restaurant"> *RESTAURANT* </h1>
+        <h1 class="restaurant"> Rubber Duck Bistro </h1>
         <section>
           <div class="input-field">
             <form onSubmit={handleSubmit}>
@@ -45,8 +48,8 @@ function UserInput() {
                   class="form-control"
                   name="name"
                   placeholder="Name"
-                  value={state.name}
                   onChange={handleChange} required
+                  className="name-field"
                 />
               </div>
 
@@ -56,8 +59,8 @@ function UserInput() {
                   class="form-control"
                   name="table"
                   placeholder="Table Number"
-                  value={state.table}
                   onChange={handleChange} required
+                  className="table-field"
                 />
               </div>
 
@@ -67,20 +70,19 @@ function UserInput() {
                   class="form-control"
                   name="phone"
                   placeholder="Phone Number"
-                  value={state.phone}
                   onChange={handleChange} required
+                  className="ph-field"
                 />
               </div>
 
               <div>
-                <input
+                <button          
                   type="submit"
-                  class="btn btn-primary btn-block btn-lg" 
-                  value="Continue to Menu"
-                  onClick={() => {
-                    window.location.href = '/user/menu';
-                  }}
-                />
+                  class="btn btn-primary btn-block btn-lg"
+                  className="menu-btn"
+                >
+                Continue to Menu
+                </button>
               </div>
             </form>
           </div>

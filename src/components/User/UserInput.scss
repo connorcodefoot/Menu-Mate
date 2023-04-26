@@ -12,15 +12,15 @@ body {
 .welcome {
   font-family: 'Kalam', cursive;
   color: white;
-  font-size: 45px;
+  font-size: 35px;
   text-align: center;
-  margin-top: .75em;
+  margin-top: 1em;
   margin-bottom: 10px;
 }
 
 .restaurant {
   color: white;
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
 }
 
@@ -44,20 +44,22 @@ section {
 }
 
 
-input {
+input, .menu-btn {
   border-radius: 20px;
   border: 1px solid white;
   background: rgba(254, 254, 254, 0.209);
-  background: linear-gradient(55deg, rgba(253, 252, 252, 0.644) 0%, rgba(254, 254, 254, 0.128) 92%);
+  background: linear-gradient(235deg, rgba(253, 252, 252, 0.644) 0%, rgba(254, 254, 254, 0.128) 92%);
+  
   margin-bottom: 2em;
 }
 
-.form-control::placeholder {
+.name-field::placeholder,
+.table-field::placeholder,
+.ph-field::placeholder {
   color: white;
 }
 
-
-form input {
+form input, .menu-btn {
   font-size: 1.5em;
   color: white;
   padding: 10px;
@@ -68,6 +70,6 @@ form input {
   width: 160px;
   height: 160px;
   z-index: -1;
-  margin: -20px 0 -90px -5px;
+  margin: -20px 0px -90px 0px;
 }
 

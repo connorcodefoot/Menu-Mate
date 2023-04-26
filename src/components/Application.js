@@ -4,26 +4,28 @@ import "components/Application.scss";
 
 import AdminOrders from "pages/AdminOrders";
 import AdminPortal from "pages/AdminPortal";
+import AdminMenu from "pages/AdminMenu";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserHome from "pages/UserHome";
-import MenuItem from "./MenuItem";
 import UserCart from "pages/UserCart";
-import UserMenu from "pages/UserMenu";
-import { Context } from '../Context/index';
+import UserMenuView from "pages/UserMenuView";
+import { Context, UserContext, useContext } from '../Context/index';
 import { useState } from "react";
 import CartView from "pages/CartView";
-import { data } from '../data';
 import { NavLink } from "react-router-dom";
+import UserThankyou from "./User/UserThankyou";
 
 
 export default function Application() {
 
   const [state, setState] = useState({
-    data: data,
     cart: [],
   });
 
-  const addToCart = (item) => {
+  const [user, setUser] = useState('');
+
+
+  const addToCart = (item, note) => {
     setState({
       ...state,
       cart: state.cart.find((cartItem) => cartItem.id === item.id)
@@ -32,9 +34,8 @@ export default function Application() {
             ? { ...cartItem, count: cartItem.count + 1 }
             : cartItem
         )
-        : [...state.cart, { ...item, count: 1 }],
+        : [...state.cart, { ...item, count: 1, note }],
     });
-    console.log(state.cart);
   };
 
   const increase = (item) => {
@@ -53,11 +54,12 @@ export default function Application() {
       ...state,
       cart: state.cart.map((cartItem) =>
         cartItem.id === item.id
-          ? { ...cartItem, count: cartItem.count > 1 ? cartItem.count - 1 : 1 }
+          ? { ...cartItem, count: cartItem.count - 1 }
           : cartItem
       ),
     });
   };
+
 
   const removeItem = (id) => {
     setState({
@@ -65,11 +67,6 @@ export default function Application() {
       cart: state.cart.filter((cartItem) => cartItem.id !== id),
     });
   };
-
-  const cartItemCount = state.cart.reduce(
-    (acc, data) => (acc += data.count),
-    0
-  );
 
   const cartTotal = () => {
 
@@ -83,24 +80,30 @@ export default function Application() {
 
   };
 
+  const emptyCart = () => {
+    setState({
+      ...state,
+      cart: []
+    });
+  };
+
   return (
     <Context.Provider
-      value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal }}
-    >
-      <BrowserRouter>
-        <NavLink className="btn" activeClassName="active" to="/cart">
-          Cart ({cartItemCount > 0 ? cartItemCount : 0})
-        </NavLink>
-        <Routes>
-          <Route path="/admin" element={<AdminPortal />}></Route>
-          <Route path="/" element={<UserHome />}></Route>
-          <Route path="/user/menu" element={<UserMenu />}></Route>
-          <Route path="/menu" element={<MenuItem />}></Route>
-          <Route path="admin/orders" element={<AdminOrders />}></Route>
-          <Route path="user/cart" element={<UserCart />}></Route>
-          <Route path="/cart" element={<CartView />}></Route>
-        </Routes>
-      </BrowserRouter>
+      value={{ state: state, addToCart, increase, decrease, removeItem, cartTotal, emptyCart }}>
+      <UserContext.Provider value={{ user, setUser }}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/admin" element={<AdminPortal />}></Route>
+              <Route path="/" element={<UserHome />}></Route>
+              <Route path="/user/menu" element={<UserMenuView />}></Route>
+              <Route path="/admin/menu" element={<AdminMenu />}></Route>
+              <Route path="admin/orders" element={<AdminOrders />}></Route>
+              <Route path="user/cart" element={<UserCart />}></Route>
+              <Route path="/cart" element={<CartView />}></Route>
+              <Route path="/user/thank-you" element={<UserThankyou />}></Route>
+            </Routes>
+          </BrowserRouter>
+        </UserContext.Provider>
     </Context.Provider>
   );
 }

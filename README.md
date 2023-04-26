@@ -1,44 +1,44 @@
 # Menu Mate
 
-## Setup DB
+## Description
 
-1. psql
-2. run the following from psql
-```
-CREATE ROLE mate WITH LOGIN password '123456';
-CREATE DATABASE mmdatabase OWNER mate;
-```
-3. Ensure .env file looks like this:
-```
-DB_HOST=localhost
-DB_USER=mate
-DB_PASS=123456
-DB_NAME=mmdatabase
-DB_PORT=5432
-```
-4. run ```npm install```
+Menu Mate is an MVP for an all in one POS for restaurants. Managers can create and update menus and manage orders, all while customers can create, submit and pay for orders from their mobile device.
 
-5. run ```npm run db:reset```  
+## Stack
+
+Postgres, Express, Node and Javascript
+
+## Future Builds
+
+- Kitchen view of orders optimized for people preparing food
+- Alternative customer flow for takeout orders
+- QR code scanning for table
+- Reporting
+- Deeper tools for orders view
+- Refactoring. Three of us worked quite independentally on this project - it could use some consistency/trimming
 
 
 ## Setup
 
-Install dependencies with `npm install`.
+- Ensure that you have also cloned Menu Mate API (https://github.com/connorcodefoot/Menu-Mate-API)
+- Create and connect local postgres DB, setting up .env file accordingly
+- Run ```npm run db:reset``` to seed app
+- Run API then run app
 
-## Running Webpack Development Server
+## How to use
+- Create a new user, proceed to menu
+- Add items to your order, submit items to kitchen. Note that orders are ongoing until they are paid, so feel free to continue to add to the order if you feel like another drink or dessert. See stripe details below for test card credentials.
+- For admin views, go to /admin/orders, from there, browse orders or add/edit menus
 
-```sh
-npm start
+## Stripe
+
+- Use stripe test credentials to submit payments
+``` 
+    Card: 4242424242424242
+    Expiry: any date greater than today
+    CSV: any 3 digits
 ```
 
-## Running Jest Test Framework
 
-```sh
-npm test
-```
 
-## Running Storybook Visual Testbed
 
-```sh
-npm run storybook
-```
