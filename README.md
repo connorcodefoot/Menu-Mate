@@ -6,7 +6,7 @@ Menu Mate is an MVP for an all in one POS for restaurants. Managers can create a
 
 ## Stack
 
-Postgres, Express, Node and Javascript
+Postgres, Express, Node, React
 
 ## Future Builds
 
