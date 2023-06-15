@@ -11,7 +11,7 @@
 <br />
 <div align="center">
 
-  <div style: z-index='0'> ![mm](https://github.com/connorcodefoot/Menu-Mate/blob/master/src/MMLogo.gif)</div>
+![mm](https://github.com/connorcodefoot/Menu-Mate/blob/master/src/MMLogo.gif)
   <p align="center">
     Think Microsoft Teams or Slack, except the entire team is made up of AI personas, each primed with details on their role within the team and eventually with context from past interactions. Built using Flask, Python, React and LangChain.
   </p>
