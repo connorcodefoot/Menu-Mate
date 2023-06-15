@@ -13,8 +13,7 @@
 
 ![mm](https://github.com/connorcodefoot/Menu-Mate/blob/master/src/MMLogo.gif)
   <p align="center">
-    Think Microsoft Teams or Slack, except the entire team is made up of AI personas, each primed with details on their role within the team and eventually with context from past interactions. Built using Flask, Python, React and LangChain.
-  </p>
+Menu Mate is an MVP for an all in one POS for restaurants. Managers can create and update menus and manage orders, all while customers can create, submit and pay for orders from their mobile device.  </p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -31,6 +30,11 @@
       <a href="#getting-started">Installation</a>
     <li>
       <a href="#installation">Getting Started</a></li>
+    <ol>
+      <li>
+        <a href="#stripe">Stripe Credentials</a>
+      </li>
+    </ol>
     </li>
   </ol>
 </details>
@@ -42,37 +46,35 @@ This project is in progress. Using an instant messaging model, MyTeam enables a 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Built With
+## Built With
 
-* React
-* Flask
-* Supabase
-* [Langchain](https://langchain.com/)
+Postgres, Express, Node, React
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
-### Installation
+## Installation
 
-1. Create local copy of MyTeam and [MyTeam Backend](https://github.com/connorcodefoot/myteam-backend)
-2. Within backend directory, initiate a virtual environment ```python -m venv /path/to/new/virtual/environment```
-3. Install dependencies for frontend and backend using npm install and pip install respectively
-4. For backend, create new .env file with the following:
-```
-OPENAI_API_KEY = YOUR_KEY
-GOOGLE_CSE_ID = YOUR_ID
-GOOGLE_API_KEY = YOUR_KEY
-``` 
-
-To Create an OpenAI API Key https://platform.openai.com/
-To [create a custom google search engine and retrieve CSE and API](https://stackoverflow.com/questions/37083058/programmatically-searching-google-in-python-using-custom-search)
+1. Ensure that you have also cloned MenuMate API (https://github.com/connorcodefoot/Menu-Mate-API)
+2. Create and connect local postgres DB, setting up .env file accordingly
+3. Run ```npm run db:reset``` to seed app
+4. Run API then run app
   
 ## Getting Started
 
-1. Create a new teammate using the New Teammate button
-2. Complete the form, providing as much or as little detail as you would like. The teammate's persona will initially be shaped by their title, temperature (creativity), verbose (how talkative) and persona description. If you can't think of anything, you can set the title to Cat and the persona to Meow and you will most likely receive only Meows to each message you send. 
-3. Begin chatting about whatever you like!
-4. Create a different bot, rinse and repeat. Note how they will conduct themselves differently and answer accordingly.
+1. Create a new user, proceed to men
+2. Add items to your order, submit items to kitchen. Note that orders are ongoing until they are paid, so feel free to continue to add to the order if you feel like another drink or dessert.
+3. See stripe details below for test card credentials.
+4. For admin views, go to /admin/orders, from there, browse orders or add/edit menus
+
+### Stripe
+
+- Use stripe test credentials to submit payments
+``` 
+    Card: 4242424242424242
+    Expiry: any date greater than today
+    CSV: any 3 digits
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -138,15 +140,9 @@ Connor Broadfoot- [twitter](https://twitter.com/brocollihotdog) - cgbroadfoot@gm
 
 
 
-# Menu Mate
 
-## Description
 
-Menu Mate is an MVP for an all in one POS for restaurants. Managers can create and update menus and manage orders, all while customers can create, submit and pay for orders from their mobile device.
 
-## Stack
-
-Postgres, Express, Node, React
 
 ## Future Builds
 
@@ -158,26 +154,10 @@ Postgres, Express, Node, React
 - Refactoring. Three of us worked quite independentally on this project - it could use some consistency/trimming
 
 
-## Setup
 
-- Ensure that you have also cloned Menu Mate API (https://github.com/connorcodefoot/Menu-Mate-API)
-- Create and connect local postgres DB, setting up .env file accordingly
-- Run ```npm run db:reset``` to seed app
-- Run API then run app
 
-## How to use
-- Create a new user, proceed to menu
-- Add items to your order, submit items to kitchen. Note that orders are ongoing until they are paid, so feel free to continue to add to the order if you feel like another drink or dessert. See stripe details below for test card credentials.
-- For admin views, go to /admin/orders, from there, browse orders or add/edit menus
 
-## Stripe
 
-- Use stripe test credentials to submit payments
-``` 
-    Card: 4242424242424242
-    Expiry: any date greater than today
-    CSV: any 3 digits
-```
 
 
 
