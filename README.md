@@ -11,7 +11,7 @@
 <br />
 <div align="center">
 
-  ![](https://github.com/connorcodefoot/Menu-Mate/blob/master/src/MMLogo.gif)
+  <div style: z-index='0'> ![](https://github.com/connorcodefoot/Menu-Mate/blob/master/src/MMLogo.gif)</div>
   <h3 align="center">MenuMate</h3>
 
   <p align="center">
