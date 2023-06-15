@@ -8,7 +8,7 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 <!-- PROJECT LOGO -->
-![mmLogo]
+![]
 
 <br />
 <div align="center">
