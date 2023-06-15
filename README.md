@@ -85,12 +85,12 @@ Postgres, Express, Node, React
 <!-- ROADMAP -->
 ## Roadmap Ideas
 
-#[ ] Kitchen view of orders optimized for people preparing food
-#[ ] Alternative customer flow for takeout orders
-#[ ]  QR code scanning for table
-#[ ]  Reporting
-#[ ]  Deeper tools for orders view
-#[ ]  Refactoring. Three of us worked quite independentally on this project - it could use some consistency/trimming
+- [ ] Kitchen view of orders optimized for people preparing food
+- [ ] Alternative customer flow for takeout orders
+- [ ]  QR code scanning for table
+- [ ]  Reporting
+- [ ]  Deeper tools for orders view
+- [ ]  Refactoring. Three of us worked quite independentally on this project - it could use some consistency/trimming
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
