@@ -8,10 +8,10 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 <!-- PROJECT LOGO -->
-![](https://github.com/connorcodefoot/Menu-Mate/blob/master/src/MMLogo.gif)
-
 <br />
 <div align="center">
+
+  ![](https://github.com/connorcodefoot/Menu-Mate/blob/master/src/MMLogo.gif)
 
 
   <h3 align="center">MyTeam</h3>
