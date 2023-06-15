@@ -42,7 +42,8 @@ Menu Mate is an MVP for an all in one POS for restaurants. Managers can create a
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is in progress. Using an instant messaging model, MyTeam enables a non-technical user to create bots and agents that can perform specific tasks. Users can create teammates with different personas and converse accordingly. Behind the scenes, the new teammate is created using ChatGPT specific to the parameters the user inputs, while the conversation history is fed back into the model, further developing the persona and ensuring context is maintained indefinitely. 
+This project was completed with a group of lovely students as a final project for [Lighthouse Labs](https://www.lighthouselabs.ca/). A handful of us had worked in the service industry and all agreed that restaurant software, primarily POS systems are a huge point of frustration. They're hard to update, hard to use and also don't have any customer component. We set out to solve this problem by creating an app that is extremely easy to use for restaurant managers and servers. Within that, we also built a customer facing interface that enables them to place orders, continue to add to their existing order and finally settle up when they are set to leave. 
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -81,14 +82,14 @@ Postgres, Express, Node, React
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Roadmap Ideas
 
-- [X] Add option to create new personas
-- [ ] Integrate supabase
-- [ ] Cleanup UI
-- [ ] Add users table to DB
-- [ ] Add auth
-- [ ] Lite deploy to friends and fam
+[ ] Kitchen view of orders optimized for people preparing food
+[ ] Alternative customer flow for takeout orders
+[ ]  QR code scanning for table
+[ ]  Reporting
+[ ]  Deeper tools for orders view
+[ ]  Refactoring. Three of us worked quite independentally on this project - it could use some consistency/trimming
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -144,14 +145,7 @@ Connor Broadfoot- [twitter](https://twitter.com/brocollihotdog) - cgbroadfoot@gm
 
 
 
-## Future Builds
 
-- Kitchen view of orders optimized for people preparing food
-- Alternative customer flow for takeout orders
-- QR code scanning for table
-- Reporting
-- Deeper tools for orders view
-- Refactoring. Three of us worked quite independentally on this project - it could use some consistency/trimming
 
 
 
