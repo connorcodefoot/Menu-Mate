@@ -98,9 +98,9 @@ Postgres, Express, Node, React
 <!-- CONTACT -->
 ## Contact & Contributors
 
-Lindsey Ogilvie - [github](https://github.com/lindseyogilvie)
-Sam Narduzzi - [github](https://github.com/samnarduzzi)
-Connor Broadfoot- [github](https://github.com/connorcodefoot/) - [twitter](https://twitter.com/brocollihotdog) - cgbroadfoot@gmail.com
+- Lindsey Ogilvie - [github](https://github.com/lindseyogilvie)
+- Sam Narduzzi - [github](https://github.com/samnarduzzi)
+- Connor Broadfoot- [github](https://github.com/connorcodefoot/) -- [twitter](https://twitter.com/brocollihotdog) - cgbroadfoot@gmail.com
 
 
 
