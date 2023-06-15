@@ -100,7 +100,7 @@ Postgres, Express, Node, React
 
 - Lindsey Ogilvie - [github](https://github.com/lindseyogilvie)
 - Sam Narduzzi - [github](https://github.com/samnarduzzi)
-- Connor Broadfoot- [github](https://github.com/connorcodefoot/) -- [twitter](https://twitter.com/brocollihotdog) - cgbroadfoot@gmail.com
+- Connor Broadfoot - [github](https://github.com/connorcodefoot/) - [twitter](https://twitter.com/brocollihotdog) - cgbroadfoot@gmail.com
 
 
 
