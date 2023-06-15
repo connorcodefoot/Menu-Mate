@@ -1,3 +1,5 @@
+![](https://github.com/connorcodefoot/Menu-Mate/blob/3045f5f07c0f0aa93dfa7e0a89c36e7b2a58f56c/src/MMLogo.gif)
+
 # Menu Mate
 
 ## Description
