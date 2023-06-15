@@ -64,7 +64,7 @@ Postgres, Express, Node, React
   
 ## Getting Started
 
-1. Create a new user, proceed to men
+1. Create a new user, proceed to menu
 2. Add items to your order, submit items to kitchen. Note that orders are ongoing until they are paid, so feel free to continue to add to the order if you feel like another drink or dessert.
 3. See stripe details below for test card credentials.
 4. For admin views, go to /admin/orders, from there, browse orders or add/edit menus
