@@ -8,7 +8,7 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 <!-- PROJECT LOGO -->
-[mmLogo]
+![mmLogo]
 
 <br />
 <div align="center">
@@ -105,7 +105,7 @@ Connor Broadfoot- [twitter](https://twitter.com/brocollihotdog) - cgbroadfoot@gm
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[mmlogo]:(https://github.com/connorcodefoot/Menu-Mate/blob/3045f5f07c0f0aa93dfa7e0a89c36e7b2a58f56c/src/MMLogo.gif)
+[]:(https://github.com/connorcodefoot/Menu-Mate/blob/3045f5f07c0f0aa93dfa7e0a89c36e7b2a58f56c/src/MMLogo.gif)
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
