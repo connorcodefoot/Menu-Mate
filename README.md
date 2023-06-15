@@ -13,7 +13,7 @@
 
 ![mm](https://github.com/connorcodefoot/Menu-Mate/blob/master/src/MMLogo.gif)
   <p align="center">
-Menu Mate is an MVP for an all in one POS for restaurants. Managers can create and update menus and manage orders, all while customers can create, submit and pay for orders from their mobile device.  </p>
+Menu Mate is an all in one POS for restaurants. Managers can create and update menus and manage orders, all while customers can create, submit and pay for orders from their mobile device.  </p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -96,9 +96,12 @@ Postgres, Express, Node, React
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
-## Contact
+## Contact & Contributors
 
-Connor Broadfoot- [twitter](https://twitter.com/brocollihotdog) - cgbroadfoot@gmail.com
+Lindsey Ogilvie - [github](https://github.com/lindseyogilvie)
+Sam Narduzzi - [github](https://github.com/samnarduzzi)
+Connor Broadfoot- [github](https://github.com/connorcodefoot/) - [twitter](https://twitter.com/brocollihotdog) - cgbroadfoot@gmail.com
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
