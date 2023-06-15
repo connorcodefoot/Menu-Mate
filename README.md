@@ -19,24 +19,25 @@ Menu Mate is an MVP for an all in one POS for restaurants. Managers can create a
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
+  <ul>
+      <li>
+        <a href="#about-the-project">About The Project</a>
+      </li>
+      <li>
+        <a href="#built-with">Built With</a></li>
+      </li>
     <li>
       <a href="#getting-started">Installation</a>
     <li>
       <a href="#installation">Getting Started</a></li>
-    <ul>
-      <li>
-        <a href="#stripe">Stripe Credentials</a>
-      </li>
-    </ul>
     </li>
-  </ol>
+    <li>
+      <a href="#roadmap">Roadmap</a>
+    </li>
+      <li>
+      <a href="#contact">Contact</a>
+    </li>
+  </ul>
 </details>
 
 <!-- ABOUT THE PROJECT -->
