@@ -8,7 +8,7 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 <!-- PROJECT LOGO -->
-![mm]
+![](https://github.com/connorcodefoot/Menu-Mate/blob/master/src/MMLogo.gif)
 
 <br />
 <div align="center">
